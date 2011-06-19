@@ -1,7 +1,6 @@
 package System;
 
 import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.Scanner;
 
 import MoviesData.MovieData;
@@ -11,21 +10,24 @@ import Startup.DataHours;
  * Padr√£o Singleton
  */
 
- /**
- *Classe responsavel por gerenciar todas as tarefas do filme
+/**
+ * Classe responsavel por gerenciar todas as tarefas do filme
  */
 public class ManageMovie extends ManageMovies {
 	private static ManageMovie instance;
-	
-	public ManageMovie() {}
-	
+
+	public ManageMovie() {
+	}
+
 	public static ManageMovie getInstance() {
-		if (instance==null)	instance = new ManageMovie();
+		if (instance == null)
+			instance = new ManageMovie();
 		return instance;
 	}
-	
+
 	/**
-	 * Exibi um menu no qual ele pode escolher se quer exibir, criar, modificar ou excluir um filme
+	 * Exibi um menu no qual ele pode escolher se quer exibir, criar, modificar
+	 * ou excluir um filme
 	 */
 	void optionMovie() {
 		Scanner scanner = new Scanner(System.in);
@@ -84,9 +86,10 @@ public class ManageMovie extends ManageMovies {
 	/**
 	 * Cria um filme
 	 */
-	
-	//interass„o com a interface grafica.
-	public void createMovie(String nome,String genero,String classif,String dimens,String linguagem, DataHours duracao) {
+
+	// interass„o com a interface grafica.
+	public void createMovie(String nome, String genero, String classif,
+			String dimens, String linguagem, DataHours duracao) {
 		String name = nome;
 		String gender = genero;
 		Integer ageRate = Integer.parseInt(classif);
@@ -100,10 +103,10 @@ public class ManageMovie extends ManageMovies {
 				dimension, language, duration);
 		mapMovieData.put(idMovie, newMovieData);
 		historic = HistoricFactory.getInstance();
-		historic.AddHistoric(newMovieData,"CREATED");
+		historic.AddHistoric(newMovieData, "CREATED");
 		uploadData();
 	}
-	
+
 	private void createMovie() {
 		System.out.print("\nCriando Filme...");
 		String name = nameOfMovie();
@@ -117,14 +120,33 @@ public class ManageMovie extends ManageMovies {
 		MovieData newMovieData = new MovieData(idMovie, name, gender, ageRate,
 				dimension, language, duration);
 		mapMovieData.put(idMovie, newMovieData);
-		
-		historic.AddHistoric(newMovieData,"CREATED");
+
+		historic.AddHistoric(newMovieData, "CREATED");
 		uploadData();
 	}
 
 	/**
 	 * Modifica um filme
 	 */
+	// pela interface grafica!!!!!!!!!!!!!!
+	public void modifyMovie(int cod, String name, String gender,
+			Integer ageRate, String dimension, String language, String duration) {
+		downloadData();
+		historic = HistoricFactory.getInstance();
+		MovieData currentMovie = mapMovieData.get(cod);
+		currentMovie.setName(name);
+		currentMovie.setGender(gender);
+		currentMovie.setAgeRate(ageRate);
+		currentMovie.setDimension(dimension);
+		currentMovie.setLanguage(language);
+		currentMovie.setDuration(selectDuration(duration));
+
+		mapMovieData.put(currentMovie.getIdMovie(), currentMovie);
+		historic.AddHistoric(currentMovie.toString(), "MODIFIED");
+		uploadData();
+	}
+
+	// pela sistema basico
 	private void modifyMovie() {
 		Scanner scanner = new Scanner(System.in);
 		MovieData currentMovie = chooseMovie("modify");
@@ -144,15 +166,20 @@ public class ManageMovie extends ManageMovies {
 				System.out.println("\nModificando Filme...");
 				System.out.print("\nNome (" + currentMovie.getName() + "): ");
 				name = scanner.next();
-				System.out.print("\nGenero (" + currentMovie.getGender()	+ "): ");
+				System.out.print("\nGenero (" + currentMovie.getGender()
+						+ "): ");
 				gender = scanner.next();
-				System.out.print("\nFaixa Etaria (" + currentMovie.getAgeRate() + "): ");
+				System.out.print("\nFaixa Etaria (" + currentMovie.getAgeRate()
+						+ "): ");
 				ageRate = scanner.nextInt();
-				System.out.print("\nDimensao (" + currentMovie.getDimension()	+ "): ");
+				System.out.print("\nDimensao (" + currentMovie.getDimension()
+						+ "): ");
 				dimension = scanner.next();
-				System.out.print("\nIdioma (" + currentMovie.getLanguage() + "): ");
+				System.out.print("\nIdioma (" + currentMovie.getLanguage()
+						+ "): ");
 				language = scanner.next();
-				System.out.print("\nDuracao (" + currentMovie.getDuration().toDuration() + "): ");
+				System.out.print("\nDuracao ("
+						+ currentMovie.getDuration().toDuration() + "): ");
 				duration = scanner.next();
 				verify = true;
 			} catch (InputMismatchException e) {
@@ -170,15 +197,39 @@ public class ManageMovie extends ManageMovies {
 		currentMovie.setDimension(dimension);
 		currentMovie.setLanguage(language);
 		currentMovie.setDuration(selectDuration(duration));
-		
+
 		mapMovieData.put(currentMovie.getIdMovie(), currentMovie);
-		historic.AddHistoric(currentMovie.toString(),"MODIFIED");
+		historic.AddHistoric(currentMovie.toString(), "MODIFIED");
 		uploadData();
 	}
-	
+
 	/**
 	 * Deleta um filme
 	 */
+	public void deleteMovie(int cod) {
+		downloadData();
+		historic = HistoricFactory.getInstance();
+		MovieData currentMovie = mapMovieData.get(cod); // retorna o item do
+														// mapa a ser excluido
+		if (currentMovie == null) {
+			return;
+		} else {
+			mapMovieData.remove(currentMovie.getIdMovie());
+			for (Integer room : mapSessionData.keySet()) {
+				for (String session : mapSessionData.get(room).keySet()) {
+					if (mapSessionData.get(room).get(session).getCurrentMovie()
+							.getIdMovie() == currentMovie.getIdMovie())
+						mapSessionData.get(room).remove(session);
+				}
+			}
+
+			mapSessionData.remove(currentMovie.getIdMovie());
+			historic.AddHistoric(currentMovie.toString(), "DELETED");
+			uploadData();
+		}
+	}
+
+	// pelo programa base.
 	private void deleteMovie() {
 		MovieData currentMovie = chooseMovie("delete");
 		if (currentMovie == null) {
@@ -196,13 +247,14 @@ public class ManageMovie extends ManageMovies {
 			}
 
 			mapSessionData.remove(currentMovie.getIdMovie());
-			historic.AddHistoric(currentMovie.toString(),"DELETED");
+			historic.AddHistoric(currentMovie.toString(), "DELETED");
 			uploadData();
 		}
 	}
 
 	/**
 	 * Cria o id do filme sequencialmente, sem repeticao
+	 * 
 	 * @return
 	 */
 	protected Integer idMovie() {
@@ -215,9 +267,10 @@ public class ManageMovie extends ManageMovies {
 			return lastId + 1;
 		}
 	}
-	
+
 	/**
 	 * Adiciona um nome ao filme
+	 * 
 	 * @return
 	 */
 	protected String nameOfMovie() {
@@ -239,6 +292,7 @@ public class ManageMovie extends ManageMovies {
 
 	/**
 	 * Adiciona um genero ao filme
+	 * 
 	 * @return
 	 */
 	protected String typeOfGender() {
@@ -261,6 +315,7 @@ public class ManageMovie extends ManageMovies {
 
 	/**
 	 * Escolhe a faixa etaria do filme
+	 * 
 	 * @return
 	 */
 	protected Integer chooseAgeRate() {
@@ -290,6 +345,7 @@ public class ManageMovie extends ManageMovies {
 
 	/**
 	 * Escolhe a dimensao do filme
+	 * 
 	 * @return
 	 */
 	protected String chooseDimension() {
@@ -312,6 +368,7 @@ public class ManageMovie extends ManageMovies {
 
 	/**
 	 * Escolhe o idioma do filme
+	 * 
 	 * @return
 	 */
 	protected String chooseLanguage() {
@@ -331,9 +388,10 @@ public class ManageMovie extends ManageMovies {
 
 		return language;
 	}
-	
+
 	/**
 	 * Escolhe a duracao do filme
+	 * 
 	 * @return
 	 */
 	private DataHours chooseDuration() {
@@ -346,7 +404,7 @@ public class ManageMovie extends ManageMovies {
 				System.out.print("Digite a duracao(hh-mm): ");
 				dateString = scanner.next();
 				continueLoop = true;
-				
+
 				newData = selectDuration(dateString);
 			} catch (IllegalArgumentException e) {
 				System.out.println("Valores invalidos." + e);
@@ -355,11 +413,13 @@ public class ManageMovie extends ManageMovies {
 		} while (!continueLoop || !checkData(newData));
 		return newData;
 	}
-	
-	private DataHours selectDuration(String newData) throws InputMismatchException{
-		try{
-			return new DataHours(1, 1, 1, new Integer(newData.substring(0, 2)), new Integer(newData.substring(3, 5)));
-		}catch (InputMismatchException e) {
+
+	private DataHours selectDuration(String newData)
+			throws InputMismatchException {
+		try {
+			return new DataHours(1, 1, 1, new Integer(newData.substring(0, 2)),
+					new Integer(newData.substring(3, 5)));
+		} catch (InputMismatchException e) {
 			throw e;
 		}
 	}

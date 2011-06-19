@@ -183,7 +183,6 @@ public class ManagMovieDisplay extends JFrame {
 				setVisible(false);
 			}
 		});
-		
 		//MOSTRA A SELEÇÃO DO TEXTO.
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

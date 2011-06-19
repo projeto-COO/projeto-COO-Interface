@@ -1,7 +1,6 @@
 package GraphicInterface;
 
 import javax.swing.JButton;
-import MoviesData.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -120,24 +119,17 @@ public class ManagMovieAdd extends JFrame {
 		contentPane.add(lblMinutos);
 
 		JButton btnCriar = new JButton("CRIAR");
-		if (txtHoras.getText() == "" || txtMinutos.getText() == ""
-				|| txtNome.getText() == "" || txtGenero.getText() == ""
-				|| txtClassificacao.getText() == ""
-				|| txtDimensao.getText() == "" || txtLinguagem.getText() == "") {
-		} else {
-			btnCriar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent event) {
-					ManageMovie newMovie = new ManageMovie();
+		btnCriar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				ManageMovie newMovie = new ManageMovie();
 
-					DataHours duracao = new DataHours(Integer.parseInt(txtHoras
-							.getText()), Integer.parseInt(txtMinutos.getText()));
-					newMovie.createMovie(txtNome.getText(),
-							txtGenero.getText(), txtClassificacao.getText(),
-							txtDimensao.getText(), txtLinguagem.getText(),
-							duracao);
-				}
-			});
-		}
+				DataHours duracao = new DataHours(Integer.parseInt(txtHoras
+						.getText()), Integer.parseInt(txtMinutos.getText()));
+				newMovie.createMovie(txtNome.getText(), txtGenero.getText(),
+						txtClassificacao.getText(), txtDimensao.getText(),
+						txtLinguagem.getText(), duracao);
+			}
+		});
 		btnCriar.setBounds(10, 208, 91, 43);
 		contentPane.add(btnCriar);
 
