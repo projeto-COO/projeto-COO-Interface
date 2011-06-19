@@ -1,6 +1,7 @@
 package System;
 
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 import MoviesData.MovieData;
@@ -83,6 +84,26 @@ public class ManageMovie extends ManageMovies {
 	/**
 	 * Cria um filme
 	 */
+	
+	//interassão com a interface grafica.
+	public void createMovie(String nome,String genero,String classif,String dimens,String linguagem, DataHours duracao) {
+		String name = nome;
+		String gender = genero;
+		Integer ageRate = Integer.parseInt(classif);
+		String dimension = dimens;
+		String language = linguagem;
+		DataHours duration = duracao;
+
+		downloadData();// adicionado
+		Integer idMovie = idMovie();
+		MovieData newMovieData = new MovieData(idMovie, name, gender, ageRate,
+				dimension, language, duration);
+		mapMovieData.put(idMovie, newMovieData);
+		historic = HistoricFactory.getInstance();
+		historic.AddHistoric(newMovieData,"CREATED");
+		uploadData();
+	}
+	
 	private void createMovie() {
 		System.out.print("\nCriando Filme...");
 		String name = nameOfMovie();
@@ -99,7 +120,6 @@ public class ManageMovie extends ManageMovies {
 		
 		historic.AddHistoric(newMovieData,"CREATED");
 		uploadData();
-		System.out.println("Filme criado");
 	}
 
 	/**

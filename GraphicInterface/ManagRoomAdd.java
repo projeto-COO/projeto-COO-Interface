@@ -8,6 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Startup.DataHours;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 @SuppressWarnings("serial")
 public class ManagRoomAdd extends JFrame {
 
@@ -17,6 +22,9 @@ public class ManagRoomAdd extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagRoomAdd() {
+		//createMovie(String nome,String genero,String classif,String dimens,String linguagem, DataHours duracao)
+		
+		setTitle("GERENCIAMENTO - FILMES - CRIAR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
