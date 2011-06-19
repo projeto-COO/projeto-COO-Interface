@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -27,7 +25,7 @@ public class MainGraphUserInterf extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainGraphUserInterf.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
 		setTitle("MAIN MENU");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 480);
+		setBounds(100, 100, 450, 300);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -36,7 +34,168 @@ public class MainGraphUserInterf extends JFrame {
 		menuBar.add(mnArquivo);
 		
 		JMenuItem mntmExit = new JMenuItem("EXIT");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		mnArquivo.add(mntmExit);
+		
+		JMenu mnGerenciar = new JMenu("GERENCIAR");
+		menuBar.add(mnGerenciar);
+		
+		JMenu mnSessao = new JMenu("SESSAO");
+		mnGerenciar.add(mnSessao);
+		
+		
+		JMenuItem mntmExibir = new JMenuItem("EXIBIR");
+		mntmExibir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagSessionDisplay display = new ManagSessionDisplay();
+				display.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSessao.add(mntmExibir);
+		
+		JMenuItem mntmCriar = new JMenuItem("CRIAR");
+		mntmCriar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagSessionAdd add = new ManagSessionAdd();
+				add.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSessao.add(mntmCriar);
+		
+		JMenuItem mntmDeletar = new JMenuItem("EXCLUIR");
+		mntmDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagSessionDelete del = new ManagSessionDelete();
+				del.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSessao.add(mntmDeletar);
+		
+		JMenuItem mntmModificar = new JMenuItem("MODIFICAR");
+		mntmModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagSessionEdit edit = new ManagSessionEdit();
+				edit.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSessao.add(mntmModificar);
+		
+		JMenu mnFilme = new JMenu("FILME");
+		mnGerenciar.add(mnFilme);
+		
+		JMenuItem mntmExibir_1 = new JMenuItem("EXIBIR");
+		mntmExibir_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagMovieDisplay display = new ManagMovieDisplay();
+				display.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnFilme.add(mntmExibir_1);
+		
+		JMenuItem mntmCriar_1 = new JMenuItem("CRIAR");
+		mntmCriar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagMovieAdd add = new ManagMovieAdd();
+				add.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnFilme.add(mntmCriar_1);
+		
+		JMenuItem mntmDeletar_1 = new JMenuItem("EXCLUIR");
+		mntmDeletar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagMovieDelete del = new ManagMovieDelete();
+				setVisible(false);
+				del.setVisible(true);
+			}
+		});
+		mnFilme.add(mntmDeletar_1);
+		
+		JMenuItem mntmModificar_1 = new JMenuItem("MODIFICAR");
+		mntmModificar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagMovieEdit edit = new ManagMovieEdit();
+				edit.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnFilme.add(mntmModificar_1);
+		
+		JMenu mnSala = new JMenu("SALA");
+		mnGerenciar.add(mnSala);
+		
+		JMenuItem mntmExibir_2 = new JMenuItem("EXIBIR");
+		mntmExibir_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagRoomDisplay display = new ManagRoomDisplay();
+				display.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSala.add(mntmExibir_2);
+		
+		JMenuItem mntmCriar_2 = new JMenuItem("CRIAR");
+		mntmCriar_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagRoomAdd add = new ManagRoomAdd();
+				add.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSala.add(mntmCriar_2);
+		
+		JMenuItem mntmDeletar_2 = new JMenuItem("EXCLUIR");
+		mntmDeletar_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagRoomDelete del = new ManagRoomDelete();
+				del.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSala.add(mntmDeletar_2);
+		
+		JMenuItem mntmEditar = new JMenuItem("EDITAR");
+		mntmEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ManagRoomEdit edit = new ManagRoomEdit();
+				edit.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSala.add(mntmEditar);
+		
+		JMenu mnHistorico = new JMenu("HISTORICO");
+		menuBar.add(mnHistorico);
+		
+		JMenuItem mntmOperaoes = new JMenuItem("OPERACOES");
+		mntmOperaoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InterfOperacHist hoper = new InterfOperacHist();
+				hoper.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnHistorico.add(mntmOperaoes);
+		
+		JMenuItem mntmVendas = new JMenuItem("VENDAS");
+		mntmVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InterfSalesHist hsales = new InterfSalesHist();
+				hsales.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnHistorico.add(mntmVendas);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -46,67 +205,24 @@ public class MainGraphUserInterf extends JFrame {
 		btnExit.setToolTipText("SAIR DO SISTEMA");
 		btnExit.setIcon(new ImageIcon(MainGraphUserInterf.class.getResource("/com/sun/java/swing/plaf/windows/icons/Error.gif")));
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnExit.setBounds(497, 356, 117, 54);
+		btnExit.setBounds(307, 176, 117, 54);
 		contentPane.add(btnExit);
 		
-		JButton btnGerenciar = new JButton("GERENCIAR");
-		btnGerenciar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnGerenciar.setBounds(114, 144, 140, 42);
-		contentPane.add(btnGerenciar);
-		
-		JLabel lblGerenciarSistema = new JLabel("GERENCIAR SISTEMA");
-		lblGerenciarSistema.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGerenciarSistema.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lblGerenciarSistema.setBounds(114, 119, 140, 27);
-		contentPane.add(lblGerenciarSistema);
-		
 		JButton btnVender = new JButton("VENDER");
-		btnVender.setBounds(368, 144, 140, 42);
-		btnVender.setFont(new Font("Tahoma", Font.BOLD, 15));
-		contentPane.add(btnVender);
-		
-		JLabel lblVenderIngresso = new JLabel("VENDER INGRESSO");
-		lblVenderIngresso.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVenderIngresso.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lblVenderIngresso.setBounds(368, 119, 140, 27);
-		contentPane.add(lblVenderIngresso);
-		
-		JButton btnHistCompra = new JButton("COMPRA");
-		btnHistCompra.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnHistCompra.setBounds(10, 306, 140, 42);
-		contentPane.add(btnHistCompra);
-		
-		JButton btnHistOperacao = new JButton("OPERACAO");
-		btnHistOperacao.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnHistOperacao.setBounds(10, 347, 140, 42);
-		contentPane.add(btnHistOperacao);
-		
-		JLabel lblHistoricos = new JLabel("HISTORICOS");
-		lblHistoricos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHistoricos.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-		lblHistoricos.setBounds(10, 281, 140, 27);
-		contentPane.add(lblHistoricos);
-		
-		//ACOES DOS BOTï¿½ES.
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		
-		btnGerenciar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				InterfaceManager manager = new InterfaceManager();
-				setVisible(false);
-				manager.setVisible(true);
-			}
-		});
-		
 		btnVender.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				InterfaceSales sales = new InterfaceSales();
-				setVisible(false);
 				sales.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnVender.setBounds(10, 69, 117, 54);
+		contentPane.add(btnVender);
+		
+		//ACOES DOS BOTÕES.
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
 			}
 		});
 	}

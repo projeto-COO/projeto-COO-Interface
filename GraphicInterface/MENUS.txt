@@ -1,0 +1,7 @@
+Gerenciar Filmes...
+	Exibir os Filme(1)
+	Modificar os Filmes(2)
+	Criar os Filmes(3)
+	Excluir os Filmes(4)
+	Voltar ao menu anterior(5)
+	
