@@ -82,7 +82,24 @@ public class ManageRoom extends ManageMovies {
 
 	/**
 	 * Cria uma sala
-	 */
+	 */	
+	//METOD PARA INTERFACE GRAFICA
+	private void createRoom( Integer fileiras, Integer colunas) {
+		downloadData();
+		historic = HistoricFactory.getInstance();
+		
+		Integer rows = fileiras;
+		Integer columns = colunas;
+		Integer idRoom = idRoom();
+
+		RoomData newRoomData = new RoomData(idRoom, rows, columns);
+		mapRoomData.put(idRoom, newRoomData);
+		historic.AddHistoric(newRoomData, "CREATED");
+		uploadData();
+		System.out.println("Sala criada");
+	}
+	
+	//METODO DO PROGRAMA BASE
 	private void createRoom() {
 		System.out.print("\nCriando Sala...");
 		Integer rows = rowsOfRoom();
