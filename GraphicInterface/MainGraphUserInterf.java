@@ -166,16 +166,6 @@ public class MainGraphUserInterf extends JFrame {
 		});
 		mnSala.add(mntmDeletar_2);
 		
-		JMenuItem mntmEditar = new JMenuItem("EDITAR");
-		mntmEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ManagRoomEdit edit = new ManagRoomEdit();
-				edit.setVisible(true);
-				setVisible(false);
-			}
-		});
-		mnSala.add(mntmEditar);
-		
 		JMenu mnHistorico = new JMenu("HISTORICO");
 		menuBar.add(mnHistorico);
 		
