@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import javax.print.DocFlavor.STRING;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import MoviesData.MovieData;
 import MoviesData.RoomData;
@@ -87,23 +89,32 @@ public class ManageSession extends ManageMovies {
 	 * Cria um sessao
 	 */
 	// METODO DA INTERFACE GRAFICA
-	public void createSession(SessionData newSession) {
+	public boolean createSession(SessionData newSession) {
 		downloadData();
 		historic = HistoricFactory.getInstance();
+		boolean newData = true;
 		
 		System.out.print("\nCriando sessao...");
 		if (mapSessionData.get(newSession.getCurrentRoom().getIdRoom()) == null) {
 			mapSessionData.put(newSession.getCurrentRoom().getIdRoom(),
 					new TreeMap<String, SessionData>());
 		}
-
-		mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(
-				newSession.getIdSession(), newSession);
-
-		historic.AddHistoric(newSession, "CREATED");
-		System.out.println("Sessao criada");
-		uploadData();
-		return;
+		
+		if (!checkData(newSession.getDate())) {
+			newData = false;
+		} else {
+			if (!checkSession(newSession)) {
+				newData = false;
+			}
+		}
+		
+		if(newData){
+			mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(newSession.getIdSession(), newSession);	
+			historic.AddHistoric(newSession, "CREATED");
+			System.out.println("Sessao criada");
+			uploadData();
+		}
+		return newData;
 	}
 
 	// PROGRAMA BASE.
