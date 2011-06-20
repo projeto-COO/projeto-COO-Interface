@@ -39,7 +39,7 @@ public class ManagMovieDelete extends JFrame {
 			fluxoMovieIn.close();
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
 		//
-		
+		setTitle("GERENCIAMENTO - FILMES - EXCLUIR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

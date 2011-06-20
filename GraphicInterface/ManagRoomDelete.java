@@ -30,9 +30,6 @@ public class ManagRoomDelete extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public ManagRoomDelete() {
-		setTitle("GERENCIAMENTO - SALAS - EXCLUIR");
-		
-
 		// inicializa o mapMovieData com o arquivo .ser!!!
 		try {
 			FileInputStream fluxoRoomIn = new FileInputStream("fileRoom.ser");
@@ -43,7 +40,7 @@ public class ManagRoomDelete extends JFrame {
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
 		//
 		
-		
+		setTitle("GERENCIAMENTO - SALAS - EXCLUIR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
