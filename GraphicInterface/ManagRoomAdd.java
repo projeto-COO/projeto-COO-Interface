@@ -17,6 +17,8 @@ import javax.swing.SwingConstants;
 public class ManagRoomAdd extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtColunas;
+	private JTextField txtFileiras;
 
 	/**
 	 * Create the frame.
@@ -35,6 +37,30 @@ public class ManagRoomAdd extends JFrame {
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
+		
+		JLabel lblColunas = new JLabel("COLUNAS");
+		lblColunas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblColunas.setBounds(68, 63, 62, 14);
+		contentPane.add(lblColunas);
+		
+		JLabel lblFileiras = new JLabel("FILEIRAS");
+		lblFileiras.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFileiras.setBounds(68, 88, 62, 14);
+		contentPane.add(lblFileiras);
+		
+		txtColunas = new JTextField();
+		txtColunas.setBounds(140, 60, 86, 20);
+		contentPane.add(txtColunas);
+		txtColunas.setColumns(10);
+		
+		txtFileiras = new JTextField();
+		txtFileiras.setBounds(140, 85, 86, 20);
+		contentPane.add(txtFileiras);
+		txtFileiras.setColumns(10);
+		
+		JButton btnCriar = new JButton("CRIAR");
+		btnCriar.setBounds(137, 160, 89, 23);
+		contentPane.add(btnCriar);
 		
 		//VOLTA PARA A JANELA PRINCIPAL
 		

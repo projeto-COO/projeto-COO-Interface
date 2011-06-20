@@ -85,7 +85,7 @@ public class ManagMovieDisplay extends JFrame {
 		DisplayMovie.setLayout(null);
 		
 
-		// LISTA OS DADOS DO FILME NO PAINEL DIREITO
+		// LISTA OS DADOS DO FILME NO PAINEL 
 		int dist = 26;
 		group = new ButtonGroup();
 		for (Integer movieNow : mapMovieData.keySet()){
