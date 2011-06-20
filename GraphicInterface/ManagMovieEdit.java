@@ -12,16 +12,16 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import MoviesData.MovieData;
 import System.ManageMovie;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class ManagMovieEdit extends JFrame {
@@ -175,6 +175,7 @@ public class ManagMovieEdit extends JFrame {
 				MainGraphUserInterf main = new MainGraphUserInterf();
 				main.setVisible(true);
 				setVisible(false);
+				JOptionPane.showMessageDialog(new JFrame(), "Filme modificado com sucesso!");
 			}
 		});
 		

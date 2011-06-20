@@ -197,10 +197,6 @@ public class ManagMovieDisplay extends JFrame {
 					txtSevendeu.setText("VENDIDO");
 				else
 					txtSevendeu.setText("NAO VENDIDO");
-				
-				
-				
-				//b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString());
 			}
 		});
 	}
