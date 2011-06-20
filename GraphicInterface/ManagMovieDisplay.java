@@ -59,7 +59,7 @@ public class ManagMovieDisplay extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
-
+		
 		contentPane = new JPanel();
 		contentPane.setLayout(new GridLayout(2, 3));
 		getContentPane().setLayout(null);
@@ -73,7 +73,7 @@ public class ManagMovieDisplay extends JFrame {
 		getContentPane().add(ButtonPanel);
 		
 		JButton btnMostrar = new JButton("MOSTRAR");
-		btnMostrar.setBounds(322, 0, 100, 23);
+		btnMostrar.setBounds(300, 0, 120, 23);
 		ButtonPanel.add(btnMostrar);
 
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
@@ -120,12 +120,12 @@ public class ManagMovieDisplay extends JFrame {
 		lblGenero.setBounds(10, 83, 77, 14);
 		DisplayMovieData.add(lblGenero);
 		
-		JLabel lblClassificacao = new JLabel("Classificacao");
+		JLabel lblClassificacao = new JLabel("Classif.");
 		lblClassificacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblClassificacao.setBounds(10, 108, 77, 14);
+		lblClassificacao.setBounds(10, 108, 77 , 14);
 		DisplayMovieData.add(lblClassificacao);
 		
-		JLabel lblLingagem = new JLabel("Lingagem");
+		JLabel lblLingagem = new JLabel("Idioma");
 		lblLingagem.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblLingagem.setBounds(10, 133, 77, 14);
 		DisplayMovieData.add(lblLingagem);
@@ -183,7 +183,7 @@ public class ManagMovieDisplay extends JFrame {
 				setVisible(false);
 			}
 		});
-		//MOSTRA A SELEÇÃO DO TEXTO.
+		//MOSTRA A SELEï¿½ï¿½O DO TEXTO.
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
@@ -197,10 +197,6 @@ public class ManagMovieDisplay extends JFrame {
 					txtSevendeu.setText("VENDIDO");
 				else
 					txtSevendeu.setText("NAO VENDIDO");
-				
-				
-				
-				//b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString());
 			}
 		});
 	}

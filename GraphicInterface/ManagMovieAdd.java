@@ -1,18 +1,19 @@
 package GraphicInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Startup.DataHours;
 import System.ManageMovie;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class ManagMovieAdd extends JFrame {
@@ -38,7 +39,8 @@ public class ManagMovieAdd extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		setLocationRelativeTo(null);
+		
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
@@ -122,19 +124,24 @@ public class ManagMovieAdd extends JFrame {
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				ManageMovie newMovie = new ManageMovie();
-
-				DataHours duracao = new DataHours(Integer.parseInt(txtHoras
-						.getText()), Integer.parseInt(txtMinutos.getText()));
-				newMovie.createMovie(txtNome.getText(), txtGenero.getText(),
-						txtClassificacao.getText(), txtDimensao.getText(),
-						txtLinguagem.getText(), duracao);
+				
+				try{
+					DataHours duracao = new DataHours(Integer.parseInt(txtHoras
+							.getText()), Integer.parseInt(txtMinutos.getText()));
+					if(newMovie.createMovie(txtNome.getText(), txtGenero.getText(),
+							txtClassificacao.getText(), txtDimensao.getText(),
+							txtLinguagem.getText(), duracao))
+						JOptionPane.showMessageDialog(new JFrame(), "Filme salvado com sucesso!");
+						cleanMenu();
+				}catch(NumberFormatException e){
+					JOptionPane.showMessageDialog(new JFrame(), "Data e Hora Inadequada!");
+				}
 			}
 		});
 		btnCriar.setBounds(10, 208, 91, 43);
 		contentPane.add(btnCriar);
 
 		// VOLTA PARA A JANELA PRINCIPAL
-
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MainGraphUserInterf main = new MainGraphUserInterf();
@@ -142,5 +149,15 @@ public class ManagMovieAdd extends JFrame {
 				setVisible(false);
 			}
 		});
+	}
+	
+	void cleanMenu(){
+		txtNome.setText("");
+		txtGenero.setText("");
+		txtClassificacao.setText("");
+		txtDimensao.setText("");
+		txtLinguagem.setText("");
+		txtHoras.setText("");
+		txtMinutos.setText("");
 	}
 }

@@ -45,8 +45,8 @@ public class ManagRoomDisplay extends JFrame {
 			fRoomIn.close();
 			fluxoRoomIn.close();
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
-		//
 		
+		setLocationRelativeTo(null);
 		setTitle("GERENCIAMENTO - SALA - EXIBIR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

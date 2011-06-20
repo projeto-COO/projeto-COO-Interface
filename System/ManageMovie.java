@@ -1,7 +1,12 @@
 package System;
 
+import java.awt.Dialog;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import MoviesData.MovieData;
 import Startup.DataHours;
@@ -87,24 +92,30 @@ public class ManageMovie extends ManageMovies {
 	 * Cria um filme
 	 */
 
-	// interassão com a interface grafica.
-	public void createMovie(String nome, String genero, String classif,
-			String dimens, String linguagem, DataHours duracao) {
-		String name = nome;
-		String gender = genero;
-		Integer ageRate = Integer.parseInt(classif);
-		String dimension = dimens;
-		String language = linguagem;
-		DataHours duration = duracao;
-
-		downloadData();// adicionado
-		Integer idMovie = idMovie();
-		MovieData newMovieData = new MovieData(idMovie, name, gender, ageRate,
-				dimension, language, duration);
-		mapMovieData.put(idMovie, newMovieData);
-		historic = HistoricFactory.getInstance();
-		historic.AddHistoric(newMovieData, "CREATED");
-		uploadData();
+	// interassï¿½o com a interface grafica.
+	public boolean createMovie(String nome, String genero, String classif,String dimens, String linguagem, DataHours duracao) {
+		
+		try{
+			String name = nome;
+			String gender = genero;
+			Integer ageRate = Integer.parseInt(classif);
+			String dimension = dimens;
+			String language = linguagem;
+			DataHours duration = duracao;
+			
+			downloadData();// adicionado
+			Integer idMovie = idMovie();
+			MovieData newMovieData = new MovieData(idMovie, name, gender, ageRate,
+					dimension, language, duration);
+			mapMovieData.put(idMovie, newMovieData);
+			historic = HistoricFactory.getInstance();
+			historic.AddHistoric(newMovieData, "CREATED");
+			uploadData();
+			return true;
+		}catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(new JFrame(), "Faixa Etaria Inadequada!");
+			return false;
+		}		
 	}
 
 	private void createMovie() {

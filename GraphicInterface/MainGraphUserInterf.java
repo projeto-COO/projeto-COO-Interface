@@ -220,7 +220,7 @@ public class MainGraphUserInterf extends JFrame {
 		btnVender.setBounds(10, 69, 117, 54);
 		contentPane.add(btnVender);
 		
-		//ACOES DOS BOTÕES.
+		//ACOES DOS BOTï¿½ES.
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);

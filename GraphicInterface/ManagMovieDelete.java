@@ -15,7 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
-import MoviesData.*;
+
+import MoviesData.MovieData;
 import System.ManageMovie;
 @SuppressWarnings({ "serial"})
 public class ManagMovieDelete extends JFrame {
@@ -45,6 +46,7 @@ public class ManagMovieDelete extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
@@ -96,5 +98,4 @@ public class ManagMovieDelete extends JFrame {
 			}
 		});
 	}
-
 }

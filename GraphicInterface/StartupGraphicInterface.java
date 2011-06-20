@@ -13,9 +13,6 @@ import System.HistoricFactory;
 
 public class StartupGraphicInterface extends StartupSystem {
 
-	/**
-	 * @param args
-	 */
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

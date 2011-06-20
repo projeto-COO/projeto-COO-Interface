@@ -12,16 +12,16 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import MoviesData.MovieData;
 import System.ManageMovie;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class ManagMovieEdit extends JFrame {
@@ -61,7 +61,8 @@ public class ManagMovieEdit extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		setLocationRelativeTo(null);
+		
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
@@ -174,6 +175,7 @@ public class ManagMovieEdit extends JFrame {
 				MainGraphUserInterf main = new MainGraphUserInterf();
 				main.setVisible(true);
 				setVisible(false);
+				JOptionPane.showMessageDialog(new JFrame(), "Filme modificado com sucesso!");
 			}
 		});
 		
@@ -213,7 +215,6 @@ public class ManagMovieEdit extends JFrame {
 		}
 
 		// VOLTA PARA A JANELA PRINCIPAL
-
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MainGraphUserInterf main = new MainGraphUserInterf();
