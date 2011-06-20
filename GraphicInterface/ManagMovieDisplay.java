@@ -71,11 +71,11 @@ public class ManagMovieDisplay extends JFrame {
 		btnVoltar.setBounds(10, 0, 100, 23);
 		ButtonPanel.add(btnVoltar);
 		getContentPane().add(ButtonPanel);
-		
+		/*
 		JButton btnMostrar = new JButton("MOSTRAR");
 		btnMostrar.setBounds(300, 0, 120, 23);
 		ButtonPanel.add(btnMostrar);
-
+*/
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
 		final JPanel DisplayMovie = new JPanel();
 		DisplayMovie.setBounds(0, 0, 166, 229);
@@ -200,6 +200,7 @@ public class ManagMovieDisplay extends JFrame {
 			}
 		});
 		//MOSTRA A SELE��O DO TEXTO.
+		/*
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
@@ -214,6 +215,6 @@ public class ManagMovieDisplay extends JFrame {
 				else
 					txtSevendeu.setText("NAO VENDIDO");
 			}
-		});
+		});*/
 	}
 }

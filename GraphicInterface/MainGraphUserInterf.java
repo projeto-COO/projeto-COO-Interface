@@ -126,7 +126,7 @@ public class MainGraphUserInterf extends JFrame {
 		JMenuItem mntmModificar_1 = new JMenuItem("MODIFICAR");
 		mntmModificar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ManagMovieEdit edit = new ManagMovieEdit();
+				/*ManagMovieEdit edit = new ManagMovieEdit();
 				edit.setVisible(true);
 				setVisible(false);
 			}
@@ -135,7 +135,7 @@ public class MainGraphUserInterf extends JFrame {
 		
 		JMenu mnSala = new JMenu("SALA");
 		mnGerenciar.add(mnSala);
-		
+		*/
 		JMenuItem mntmExibir_2 = new JMenuItem("EXIBIR");
 		mntmExibir_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -144,7 +144,7 @@ public class MainGraphUserInterf extends JFrame {
 				setVisible(false);
 			}
 		});
-		mnSala.add(mntmExibir_2);
+		//mnSala.add(mntmExibir_2);
 		
 		JMenuItem mntmCriar_2 = new JMenuItem("CRIAR");
 		mntmCriar_2.addActionListener(new ActionListener() {
@@ -154,7 +154,7 @@ public class MainGraphUserInterf extends JFrame {
 				setVisible(false);
 			}
 		});
-		mnSala.add(mntmCriar_2);
+		//mnSala.add(mntmCriar_2);
 		
 		JMenuItem mntmDeletar_2 = new JMenuItem("EXCLUIR");
 		mntmDeletar_2.addActionListener(new ActionListener() {
@@ -164,7 +164,7 @@ public class MainGraphUserInterf extends JFrame {
 				setVisible(false);
 			}
 		});
-		mnSala.add(mntmDeletar_2);
+		//mnSala.add(mntmDeletar_2);
 		
 		JMenuItem mntmEditar = new JMenuItem("EDITAR");
 		mntmEditar.addActionListener(new ActionListener() {
@@ -174,10 +174,10 @@ public class MainGraphUserInterf extends JFrame {
 				setVisible(false);
 			}
 		});
-		mnSala.add(mntmEditar);
+		//mnSala.add(mntmEditar);
 		
 		JMenu mnHistorico = new JMenu("HISTORICO");
-		menuBar.add(mnHistorico);
+		//menuBar.add(mnHistorico);
 		
 		JMenuItem mntmOperaoes = new JMenuItem("OPERACOES");
 		mntmOperaoes.addActionListener(new ActionListener() {
@@ -211,7 +211,7 @@ public class MainGraphUserInterf extends JFrame {
 				setVisible(false);
 			}
 		});
-		menuBar.add(mntmVender);
+		//menuBar.add(mntmVender);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -231,4 +231,4 @@ public class MainGraphUserInterf extends JFrame {
 			}
 		});
 	}
-}
+		}

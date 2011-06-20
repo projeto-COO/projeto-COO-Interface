@@ -61,11 +61,11 @@ public class ManagSessionDisplay extends JFrame {
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
-		
+		/*
 		JButton btnMostrar = new JButton("MOSTRAR");
 		btnMostrar.setBounds(223, 164, 103, 43);
 		contentPane.add(btnMostrar);
-		
+		*/
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
 		final JPanel DisplayMovie = new JPanel();
 		DisplayMovie.setBounds(0, 0, 213, 229);
@@ -146,27 +146,28 @@ public class ManagSessionDisplay extends JFrame {
 				group.add(b);
 				DisplayMovie.add(b);
 				dist = dist + 26;
+				b.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						String recebido = group.getSelection().getActionCommand();
+						txtSessao.setText(recebido);
+						txtFilme.setText(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido).getCurrentMovie().getName());
+						txtSala.setText(recebido.substring(0, 2));
+						txtData.setText(recebido.substring(4,6)+ " / "+ recebido.substring(6,8));
+						txtHora.setText(recebido.substring(8,10)+ ":"+ recebido.substring(10,12));
+						if(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido).isSold()){
+							txtVenda.setText("VENDIDO");
+						}
+						else {
+							txtVenda.setText("NAO VENDIDO");
+						}
+					}
+				});
+				
 			}
 		}
 		//
 		
 		//GERA OS DADOS DO ITEM SELECIOANDO.
-		btnMostrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String recebido = group.getSelection().getActionCommand();
-				txtSessao.setText(recebido);
-				txtFilme.setText(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido).getCurrentMovie().getName());
-				txtSala.setText(recebido.substring(0, 2));
-				txtData.setText(recebido.substring(4,6)+ " / "+ recebido.substring(6,8));
-				txtHora.setText(recebido.substring(8,10)+ ":"+ recebido.substring(10,12));
-				if(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido).isSold()){
-					txtVenda.setText("VENDIDO");
-				}
-				else {
-					txtVenda.setText("NAO VENDIDO");
-				}
-			}
-		});
 		
 		//VOLTA PARA A JANELA PRINCIPAL
 		

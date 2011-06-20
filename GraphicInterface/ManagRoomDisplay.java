@@ -59,11 +59,11 @@ public class ManagRoomDisplay extends JFrame {
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
-		
+/*		
 		JButton btnMostrar = new JButton("MOSTRAR");
 		btnMostrar.setBounds(207, 208, 91, 43);
 		contentPane.add(btnMostrar);
-		
+*/		
 
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
 		final JPanel DisplayRoom = new JPanel();
@@ -134,24 +134,24 @@ public class ManagRoomDisplay extends JFrame {
 			group.add(b);
 			DisplayRoom.add(b);
 			dist = dist + 26;
+			b.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int recebido = Integer.parseInt(group.getSelection().getActionCommand());
+					txtId.setText(mapRoomData.get(recebido).getIdRoom().toString());
+					txtColuna.setText(mapRoomData.get(recebido).getColumns().toString());
+					txtFileira.setText(mapRoomData.get(recebido).getRows().toString());
+					txtCapacidade.setText(mapRoomData.get(recebido).getCapacity().toString());
+					if(mapRoomData.get(recebido).isSold())
+						txtSevendeu.setText("VENDIDO");
+					else
+						txtSevendeu.setText("NAO VENDIDO");
+				}
+			});
+			
 		}
 		//
 		
 		//EXIBE OS DADOS DO ITEM SELECIONADO.
-		btnMostrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
-				txtId.setText(mapRoomData.get(recebido).getIdRoom().toString());
-				txtColuna.setText(mapRoomData.get(recebido).getColumns().toString());
-				txtFileira.setText(mapRoomData.get(recebido).getRows().toString());
-				txtCapacidade.setText(mapRoomData.get(recebido).getCapacity().toString());
-				if(mapRoomData.get(recebido).isSold())
-					txtSevendeu.setText("VENDIDO");
-				else
-					txtSevendeu.setText("NAO VENDIDO");
-			}
-		});
-		
 		//VOLTA PARA A JANELA PRINCIPAL
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

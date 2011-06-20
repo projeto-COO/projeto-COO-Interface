@@ -118,10 +118,7 @@ public class TicketSale extends StartupSystem {
 	 * @param currentSession
 	 */
 	private void tagsale(SessionData currentSession) {
-		downloadData();
-		mapSessionData.get(currentSession.getCurrentRoom().getIdRoom())
+				mapSessionData.get(currentSession.getCurrentRoom().getIdRoom())
 				.get(currentSession.getIdSession()).setSold(true);
-		// mapMovieData.get(currentSession.getCurrentMovie().getIdMovie()).setSold(true);
-		// mapRoomData.get(currentSession.getCurrentRoom().getIdRoom()).setSold(true);
 	}
 }
