@@ -80,8 +80,7 @@ public class ManagRoomAdd extends JFrame {
 		btnCriar.setBounds(135, 116, 91, 43);
 		contentPane.add(btnCriar);
 		
-		//VOLTA PARA A JANELA PRINCIPAL
-		
+		//VOLTA PARA A JANELA PRINCIPAL		
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MainGraphUserInterf main = new MainGraphUserInterf();

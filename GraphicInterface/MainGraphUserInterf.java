@@ -197,6 +197,14 @@ public class MainGraphUserInterf extends JFrame {
 			}
 		});
 		mnHistorico.add(mntmVendas);
+		
+		JMenuItem mntmVender = new JMenuItem("VENDER");
+		mntmVender.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		menuBar.add(mntmVender);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -208,17 +216,6 @@ public class MainGraphUserInterf extends JFrame {
 		btnExit.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnExit.setBounds(307, 176, 117, 54);
 		contentPane.add(btnExit);
-		
-		JButton btnVender = new JButton("VENDER");
-		btnVender.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				InterfaceSales sales = new InterfaceSales();
-				sales.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnVender.setBounds(10, 69, 117, 54);
-		contentPane.add(btnVender);
 		
 		//ACOES DOS BOT�ES.
 		btnExit.addActionListener(new ActionListener() {

@@ -193,10 +193,14 @@ public class ManagMovieEdit extends JFrame {
 				txtClassif.setText(mapMovieData.get(recebido).getAgeRate()
 						.toString());
 				txtDimensao.setText(mapMovieData.get(recebido).getDimension());
-				txtHoras.setText(mapMovieData.get(recebido).getDuration().hh()
-						.toString());
-				txtMinuto.setText(mapMovieData.get(recebido).getDuration().mm()
-						.toString());
+				
+				if(mapMovieData.get(recebido).getDuration().hh().toString().length()==1)
+					txtHoras.setText("0"+mapMovieData.get(recebido).getDuration().hh().toString());
+				else txtHoras.setText(mapMovieData.get(recebido).getDuration().hh().toString());
+				
+				if(mapMovieData.get(recebido).getDuration().mm().toString().length()==1)
+					txtMinuto.setText("0"+mapMovieData.get(recebido).getDuration().mm().toString());
+				else txtHoras.setText(mapMovieData.get(recebido).getDuration().mm().toString());
 			}
 		});
 
