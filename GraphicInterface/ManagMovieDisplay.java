@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.io.FileInputStream;
@@ -71,11 +72,12 @@ public class ManagMovieDisplay extends JFrame {
 		btnVoltar.setBounds(10, 0, 100, 23);
 		ButtonPanel.add(btnVoltar);
 		getContentPane().add(ButtonPanel);
-		
+
+		/*
 		JButton btnMostrar = new JButton("MOSTRAR");
 		btnMostrar.setBounds(300, 0, 120, 23);
 		ButtonPanel.add(btnMostrar);
-
+*/
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
 		final JPanel DisplayMovie = new JPanel();
 		DisplayMovie.setBounds(0, 0, 166, 229);
@@ -88,6 +90,11 @@ public class ManagMovieDisplay extends JFrame {
 		// LISTA OS DADOS DO FILME NO PAINEL 
 		int dist = 26;
 		group = new ButtonGroup();
+	
+		if(mapMovieData==null){
+			JOptionPane.showMessageDialog(new JFrame(), "Não existem filmes cadastrados!");	
+			return;
+		}
 		for (Integer movieNow : mapMovieData.keySet()){
 			JRadioButton b = new JRadioButton(mapMovieData.get(movieNow).getName().toUpperCase());
 			b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString()); // ide salvo em string
@@ -197,22 +204,6 @@ public class ManagMovieDisplay extends JFrame {
 				MainGraphUserInterf main = new MainGraphUserInterf();
 				main.setVisible(true);
 				setVisible(false);
-			}
-		});
-		//MOSTRA A SELECAO DO TEXTO.
-		btnMostrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
-				textFCodigo.setText(mapMovieData.get(recebido).getIdMovie().toString());
-				txtNome.setText(mapMovieData.get(recebido).getName().toUpperCase());
-				txtGenero.setText(mapMovieData.get(recebido).getGender().toUpperCase());
-				txtLinguagem.setText(mapMovieData.get(recebido).getLanguage().toUpperCase());
-				txtRateage.setText(mapMovieData.get(recebido).getAgeRate().toString());
-				txtDuracao.setText(mapMovieData.get(recebido).getDuration().toDuration());
-				if(mapMovieData.get(recebido).isSold())
-					txtSevendeu.setText("VENDIDO");
-				else
-					txtSevendeu.setText("NAO VENDIDO");
 			}
 		});
 	}

@@ -39,7 +39,7 @@ public class ManagMovieDelete extends JFrame {
 			fluxoMovieIn.close();
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
 		//
-		
+		setTitle("GERENCIAMENTO - FILMES - EXCLUIR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,7 +53,7 @@ public class ManagMovieDelete extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JButton btnDeletar = new JButton("DELETAR");
-		btnDeletar.setBounds(244, 86, 91, 43);
+		btnDeletar.setBounds(308, 86, 116, 43);
 		contentPane.add(btnDeletar);
 		
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
@@ -69,12 +69,15 @@ public class ManagMovieDelete extends JFrame {
 		int dist = 26;
 		group = new ButtonGroup();
 		for (Integer movieNow : mapMovieData.keySet()){
-			JRadioButton b = new JRadioButton(mapMovieData.get(movieNow).getName().toUpperCase());
-			b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString()); // ide salvo em string
-			b.setBounds(6, dist, 109, 23);
-			group.add(b);
-			DisplayMovie.add(b);
-			dist = dist + 26;
+			if(!mapMovieData.get(movieNow).isSold()){
+				JRadioButton b = new JRadioButton(mapMovieData.get(movieNow).getName().toUpperCase());
+				b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString()); // ide salvo em string
+				b.setBounds(6, dist, 109, 23);
+				group.add(b);
+				DisplayMovie.add(b);
+				dist = dist + 26;
+			}
+
 		}
 		
 		//deleta o filme selecionado.

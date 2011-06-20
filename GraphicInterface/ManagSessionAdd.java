@@ -62,7 +62,7 @@ public class ManagSessionAdd extends JFrame {
 			fluxoMovieIn.close();
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
 		
-		
+		setTitle("GERENCIAMENTO - SESSAO - ADICIONAR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -117,7 +117,7 @@ public class ManagSessionAdd extends JFrame {
 		
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(345, 219, 79, 32);
+		btnVoltar.setBounds(326, 220, 98, 32);
 		contentPane.add(btnVoltar);
 		
 		JLabel lblData = new JLabel("DATA");
@@ -204,5 +204,6 @@ public class ManagSessionAdd extends JFrame {
 				setVisible(false);
 			}
 		});
+
 	}
 }

@@ -29,7 +29,7 @@ public class ManagRoomAdd extends JFrame {
 	public ManagRoomAdd() {
 		//createMovie(String nome,String genero,String classif,String dimens,String linguagem, DataHours duracao)
 		
-		setTitle("GERENCIAMENTO - FILMES - CRIAR");
+		setTitle("GERENCIAMENTO - SALAS - ADICIONAR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -68,10 +68,19 @@ public class ManagRoomAdd extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ManageRoom manage = new ManageRoom();
 				try{
-					manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
-					cleanMenu();
-					JOptionPane.showMessageDialog(new JFrame(), "Sala criada com sucesso.");
+					if(Integer.parseInt(txtFileiras.getText())<=0 || Integer.parseInt(txtColunas.getText())<= 0){
+						JOptionPane.showMessageDialog(new JFrame(), "Valores inadequados para fileira e/ou colunas.");
+					}
+					else{
+						
+						manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
+						cleanMenu();
+						JOptionPane.showMessageDialog(new JFrame(), "Sala criada com sucesso.");
+					}	
 				}
+						
+					
+					
 				catch(NumberFormatException he){
 					JOptionPane.showMessageDialog(new JFrame(), "Valores inadequados para fileira e/ou colunas!");
 					

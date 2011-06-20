@@ -126,6 +126,7 @@ public class MainGraphUserInterf extends JFrame {
 		JMenuItem mntmModificar_1 = new JMenuItem("MODIFICAR");
 		mntmModificar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 				ManagMovieEdit edit = new ManagMovieEdit();
 				edit.setVisible(true);
 				setVisible(false);

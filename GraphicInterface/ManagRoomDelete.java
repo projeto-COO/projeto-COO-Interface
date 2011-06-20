@@ -30,9 +30,6 @@ public class ManagRoomDelete extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public ManagRoomDelete() {
-		setTitle("GERENCIAMENTO - SALAS - EXCLUIR");
-		
-
 		// inicializa o mapMovieData com o arquivo .ser!!!
 		try {
 			FileInputStream fluxoRoomIn = new FileInputStream("fileRoom.ser");
@@ -43,7 +40,7 @@ public class ManagRoomDelete extends JFrame {
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
 		//
 		
-		
+		setTitle("GERENCIAMENTO - SALAS - EXCLUIR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -65,19 +62,22 @@ public class ManagRoomDelete extends JFrame {
 		DisplayRoom.setLayout(null);
 		
 		JButton btnExcluir = new JButton("EXCLUIR");
-		btnExcluir.setBounds(205, 101, 91, 43);
+		btnExcluir.setBounds(333, 94, 91, 43);
 		contentPane.add(btnExcluir);
 		
 		// LISTA OS DADOS DO FILME NO PAINEL ESQUERDA
 		int dist = 26;
 		final ButtonGroup group = new ButtonGroup();
 		for (Integer roomNow : mapRoomData.keySet()){
-			JRadioButton b = new JRadioButton(mapRoomData.get(roomNow).getIdRoom().toString());
-			b.setActionCommand(mapRoomData.get(roomNow).getIdRoom().toString()); // id salvo em string
-			b.setBounds(6, dist, 109, 23);
-			group.add(b);
-			DisplayRoom.add(b);
-			dist = dist + 26;
+			if(!mapRoomData.get(roomNow).isSold()){
+				JRadioButton b = new JRadioButton(mapRoomData.get(roomNow).getIdRoom().toString());
+				b.setActionCommand(mapRoomData.get(roomNow).getIdRoom().toString()); // id salvo em string
+				b.setBounds(6, dist, 109, 23);
+				group.add(b);
+				DisplayRoom.add(b);
+				dist = dist + 26;
+			}
+
 		}
 		//
 		
@@ -86,7 +86,7 @@ public class ManagRoomDelete extends JFrame {
 				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
 				ManageRoom manage = new ManageRoom();
 				manage.deleteRoom(recebido);
-				JOptionPane.showMessageDialog(new JFrame(), "Filme deletado com sucesso!");
+				JOptionPane.showMessageDialog(new JFrame(), "Sala excluida com sucesso!");
 			}
 		});
 		
