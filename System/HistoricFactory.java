@@ -287,30 +287,16 @@ public class HistoricFactory extends StartupSystem {
 		List<String> array = new LinkedList<String>();
 		for (HistoricData historicData : listHistoricData) {
 			if (historicData.getSituation().equals("SOLD")) {
-				if (historicData.getObject().getClass() == MovieData.class
-						) {
-					MovieData historic = (MovieData) historicData.getObject();
-					array.add("Data da " + historicData.getSituation()
-							+ " do Filme:\t"
-							+ historicData.getDate().toString() + "\t"
-							+ historic.toString());
-				} else if (historicData.getObject().getClass() == RoomData.class
-						&& room) {
-					RoomData historic = (RoomData) historicData.getObject();
-					array.add("Data da " + historicData.getSituation()
-							+ " da Sala:\t" + historicData.getDate().toString()
-							+ "\t" + historic.toString());
-				} else if (historicData.getObject().getClass() == SessionData.class
-						&& session) {
+				if (historicData.getObject().getClass() == SessionData.class) {
 					SessionData historic = (SessionData) historicData
 							.getObject();
 					array.add("Data da " + historicData.getSituation()
 							+ " da Sessao:\t"
-							+ historicData.getDate().toString() + "\t"
-							+ historic.toString());
+							+ historicData.getDate().toString() + "  "
+							+ historic.toSell());
 				}
 			}
 		}
-		return null;
+		return array;
 	}
 }
