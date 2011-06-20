@@ -120,12 +120,12 @@ public class ManagMovieDisplay extends JFrame {
 		lblGenero.setBounds(10, 83, 77, 14);
 		DisplayMovieData.add(lblGenero);
 		
-		JLabel lblClassificacao = new JLabel("Classificacao");
+		JLabel lblClassificacao = new JLabel("Classif.");
 		lblClassificacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblClassificacao.setBounds(10, 108, 77, 14);
+		lblClassificacao.setBounds(10, 108, 77 , 14);
 		DisplayMovieData.add(lblClassificacao);
 		
-		JLabel lblLingagem = new JLabel("Lingagem");
+		JLabel lblLingagem = new JLabel("Idioma");
 		lblLingagem.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblLingagem.setBounds(10, 133, 77, 14);
 		DisplayMovieData.add(lblLingagem);
