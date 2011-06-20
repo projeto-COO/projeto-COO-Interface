@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.io.FileInputStream;
@@ -89,6 +90,11 @@ public class ManagMovieDisplay extends JFrame {
 		// LISTA OS DADOS DO FILME NO PAINEL 
 		int dist = 26;
 		group = new ButtonGroup();
+	
+		if(mapMovieData==null){
+			JOptionPane.showMessageDialog(new JFrame(), "Não existem filmes cadastrados!");	
+			return;
+		}
 		for (Integer movieNow : mapMovieData.keySet()){
 			JRadioButton b = new JRadioButton(mapMovieData.get(movieNow).getName().toUpperCase());
 			b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString()); // ide salvo em string
