@@ -35,7 +35,18 @@ public class TicketSale extends StartupSystem {
 	private SessionData currentSession;
 	public int spots = 0;
 
-	@SuppressWarnings("static-access")
+	// programa com interface grafica
+	public void mainSales(String idSession, Integer qnt) {
+		downloadData();
+		currentSession = mapSessionData.get(
+				new Integer(idSession.substring(0, 2))).get(idSession);
+		currentSession.updateAvailability(qnt);
+		historic.AddHistoric(currentSession, "SOLD");
+		tagsale(currentSession);
+		uploadData();
+	}
+
+	// programa base
 	public void mainScreem() {
 		Scanner scanner = new Scanner(System.in);
 		int endBuy = 0;
@@ -52,7 +63,8 @@ public class TicketSale extends StartupSystem {
 					sessionEmpty = false;
 			} while (sessionEmpty);
 
-			System.out.println("Quantidade de Lugares Disponiveis: "+ currentSession.getAvailability());
+			System.out.println("Quantidade de Lugares Disponiveis: "
+					+ currentSession.getAvailability());
 			do {
 				System.out.print("Confirmar Compra(Sim(1)/ Nao(2))? ");
 				endBuy = scanner.nextInt();
@@ -61,12 +73,14 @@ public class TicketSale extends StartupSystem {
 			if (endBuy == 1) {
 				currentSession.updateAvailability(verifySpots(currentSession));
 				historic.AddHistoric(currentSession, "SOLD");
-				System.out.println("\nCompra Finalizada Com Sucesso. Imprimindo Ticket.");
+				System.out
+						.println("\nCompra Finalizada Com Sucesso. Imprimindo Ticket.");
 				tagsale(currentSession);
 				uploadData();
 			}
 		} catch (NullPointerException e) {
-			System.out.println("\nValor de entrada invalido, digitar novamamente");
+			System.out
+					.println("\nValor de entrada invalido, digitar novamamente");
 			scanner = new Scanner(System.in);
 		}
 	}
@@ -83,10 +97,13 @@ public class TicketSale extends StartupSystem {
 				System.out.print("\nIngressos para quantas pessoas: ");
 				spots = scanner.nextInt();
 
-				if (spots <= 0 || (currentSession.getAvailability() - spots) < 0) {
-					System.out.println("\nValor não corresponde com o restante de ingressos!");
+				if (spots <= 0
+						|| (currentSession.getAvailability() - spots) < 0) {
+					System.out
+							.println("\nValor não corresponde com o restante de ingressos!");
 					error = true;
-				} else	error = false;
+				} else
+					error = false;
 			} catch (InputMismatchException e) {
 				System.out.println("Entre com valores validos");
 				error = true;
@@ -101,8 +118,10 @@ public class TicketSale extends StartupSystem {
 	 * @param currentSession
 	 */
 	private void tagsale(SessionData currentSession) {
-		mapSessionData.get(currentSession.getCurrentRoom().getIdRoom()).get(currentSession.getIdSession()).setSold(true);
-		mapMovieData.get(currentSession.getCurrentMovie().getIdMovie())	.setSold(true);
-		mapRoomData.get(currentSession.getCurrentRoom().getIdRoom()).setSold(true);
+		downloadData();
+		mapSessionData.get(currentSession.getCurrentRoom().getIdRoom())
+				.get(currentSession.getIdSession()).setSold(true);
+		// mapMovieData.get(currentSession.getCurrentMovie().getIdMovie()).setSold(true);
+		// mapRoomData.get(currentSession.getCurrentRoom().getIdRoom()).setSold(true);
 	}
 }

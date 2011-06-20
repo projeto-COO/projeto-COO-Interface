@@ -228,9 +228,11 @@ public class ManageMovie extends ManageMovies {
 			mapMovieData.remove(currentMovie.getIdMovie());
 			for (Integer room : mapSessionData.keySet()) {
 				for (String session : mapSessionData.get(room).keySet()) {
-					if (mapSessionData.get(room).get(session).getCurrentMovie()
-							.getIdMovie() == currentMovie.getIdMovie())
+					System.out.println(mapSessionData.get(room).get(session).getCurrentMovie().getName());
+					if (mapSessionData.get(room).get(session).getCurrentMovie().getIdMovie() == cod){
 						mapSessionData.get(room).remove(session);
+						System.out.println("ENTROUUUUUUUUUUUUUUUU");
+					}
 				}
 			}
 

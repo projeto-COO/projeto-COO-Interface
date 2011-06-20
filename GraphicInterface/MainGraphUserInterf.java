@@ -12,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class MainGraphUserInterf extends JFrame {
@@ -198,7 +199,11 @@ public class MainGraphUserInterf extends JFrame {
 		});
 		mnHistorico.add(mntmVendas);
 		
+		JMenuItem mntmLimpar = new JMenuItem("LIMPAR");
+		mnHistorico.add(mntmLimpar);
+		
 		JMenuItem mntmVender = new JMenuItem("VENDER");
+		mntmVender.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmVender.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				InterfaceSales sales = new InterfaceSales();
