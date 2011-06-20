@@ -21,6 +21,9 @@ import Startup.DataHours;
 public class ManageMovie extends ManageMovies {
 	private static ManageMovie instance;
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public ManageMovie() {
 	}
 

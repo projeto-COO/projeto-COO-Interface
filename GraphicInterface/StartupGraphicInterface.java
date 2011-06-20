@@ -19,6 +19,7 @@ public class StartupGraphicInterface extends StartupSystem {
 		downloadData();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				downloadData();
 				try {
 					MainGraphUserInterf main = new MainGraphUserInterf();
 					main.setVisible(true);

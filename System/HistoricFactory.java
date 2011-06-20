@@ -3,6 +3,8 @@ package System;
 import java.io.*;
 import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import MoviesData.HistoricData;
@@ -13,23 +15,26 @@ import Startup.DataHours;
 import Startup.StartupSystem;
 
 /**
- * ESTA CLASSE RECEBE STRINGS DO PROGRAMA NUM TODO.
- * PARA ADICIONAR HISTORICO DE VENDA, MANDAR UM STRING, COM OS DADOS QUE QUERIA COLOCAR CONCATENADO
- * O MESMO PARA HISTORICO DE MODIFICAÇOES.
+ * ESTA CLASSE RECEBE STRINGS DO PROGRAMA NUM TODO. PARA ADICIONAR HISTORICO DE
+ * VENDA, MANDAR UM STRING, COM OS DADOS QUE QUERIA COLOCAR CONCATENADO O MESMO
+ * PARA HISTORICO DE MODIFICAÇOES.
+ * 
  * @author THIAGO :(
  */
 
-public class HistoricFactory extends StartupSystem{
-	
+public class HistoricFactory extends StartupSystem {
+
 	private static HistoricFactory instance;
-	public HistoricFactory() {}
-	
+
+	public HistoricFactory() {
+	}
+
 	public static HistoricFactory getInstance() {
-		if (instance==null)	instance = new HistoricFactory();
+		if (instance == null)
+			instance = new HistoricFactory();
 		return instance;
 	}
-	
-	
+
 	public void mainScreem() {
 		Scanner scanner = new Scanner(System.in);
 		int option = 0;
@@ -75,58 +80,147 @@ public class HistoricFactory extends StartupSystem{
 			}
 		} while (repeate);
 	}
-	
+
 	private void chooseSell() {
 		System.out.println("\t\nHistorico de Vendas");
-		for(HistoricData historicData : listHistoricData){
-			if(historicData.getSituation().equals("SOLD")){
+		for (HistoricData historicData : listHistoricData) {
+			if (historicData.getSituation().equals("SOLD")) {
 				SessionData session = (SessionData) historicData.getObject();
-				System.out.println("Data da Venda: "+historicData.getDate().toString()+"\t"+session.toString());
-			}			
+				System.out.println("Data da Venda: "
+						+ historicData.getDate().toString() + "\t"
+						+ session.toString());
+			}
 		}
 	}
 
-	private void chooseManage() {
-		System.out.println("\t\nHistorico de Gerenciamento");
-		for(HistoricData historicData : listHistoricData){
-			if(!historicData.getSituation().equals("SOLD")){
-				if(historicData.getObject().getClass() == MovieData.class){
+	public List<String> chooseManageI(boolean movie, boolean session,
+			boolean room, boolean criacao, boolean modificacao, boolean exclusao) {
+		downloadData();
+		List<String> array = new LinkedList<String>();
+		for (HistoricData historicData : listHistoricData) {
+			if (historicData.getSituation().equals("CREATED") && criacao) {
+				if (historicData.getObject().getClass() == MovieData.class
+						&& movie) {
 					MovieData historic = (MovieData) historicData.getObject();
-					System.out.println("Data da "+historicData.getSituation()+" do Filme:\t"+historicData.getDate().toString()+"\t"+
-							historic.toString());
-				}else if(historicData.getObject().getClass() == RoomData.class){
+					array.add("Data da " + historicData.getSituation()
+							+ " do Filme:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				} else if (historicData.getObject().getClass() == RoomData.class
+						&& room) {
 					RoomData historic = (RoomData) historicData.getObject();
-					System.out.println("Data da "+historicData.getSituation()+" da Sala:\t"+historicData.getDate().toString()+"\t"+
-							historic.toString());
-				}else{
-					SessionData historic = (SessionData) historicData.getObject();
-					System.out.println("Data da "+historicData.getSituation()+" da Sessao:\t"+historicData.getDate().toString()+"\t"+
-							historic.toString());
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sala:\t" + historicData.getDate().toString()
+							+ "\t" + historic.toString());
+				} else if (historicData.getObject().getClass() == SessionData.class
+						&& session) {
+					SessionData historic = (SessionData) historicData
+							.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sessao:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
 				}
-				
-				
-			}			
+			}
+			if (historicData.getSituation().equals("MODIFIED") && modificacao) {
+				if (historicData.getObject().getClass() == MovieData.class
+						&& movie) {
+					MovieData historic = (MovieData) historicData.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " do Filme:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				} else if (historicData.getObject().getClass() == RoomData.class
+						&& room) {
+					RoomData historic = (RoomData) historicData.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sala:\t" + historicData.getDate().toString()
+							+ "\t" + historic.toString());
+				} else if (historicData.getObject().getClass() == SessionData.class
+						&& session) {
+					SessionData historic = (SessionData) historicData
+							.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sessao:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				}
+			}
+			if (historicData.getSituation().equals("DELETED") && exclusao) {
+				if (historicData.getObject().getClass() == MovieData.class
+						&& movie) {
+					MovieData historic = (MovieData) historicData.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " do Filme:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				} else if (historicData.getObject().getClass() == RoomData.class
+						&& room) {
+					RoomData historic = (RoomData) historicData.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sala:\t" + historicData.getDate().toString()
+							+ "\t" + historic.toString());
+				} else if (historicData.getObject().getClass() == SessionData.class
+						&& session) {
+					SessionData historic = (SessionData) historicData
+							.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sessao:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				}
+			}
+		}
+		return array;
+	}
+
+	public void chooseManage() {
+		System.out.println("\t\nHistorico de Gerenciamento");
+		for (HistoricData historicData : listHistoricData) {
+			if (!historicData.getSituation().equals("SOLD")) {
+				if (historicData.getObject().getClass() == MovieData.class) {
+					MovieData historic = (MovieData) historicData.getObject();
+					System.out.println("Data da " + historicData.getSituation()
+							+ " do Filme:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				} else if (historicData.getObject().getClass() == RoomData.class) {
+					RoomData historic = (RoomData) historicData.getObject();
+					System.out.println("Data da " + historicData.getSituation()
+							+ " da Sala:\t" + historicData.getDate().toString()
+							+ "\t" + historic.toString());
+				} else {
+					SessionData historic = (SessionData) historicData
+							.getObject();
+					System.out.println("Data da " + historicData.getSituation()
+							+ " da Sessao:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				}
+			}
 		}
 	}
-	
+
 	public void AddHistoric(Object object, String situation) {
 		GregorianCalendar date = new GregorianCalendar();
-		HistoricData historicData = new HistoricData(object, situation, new DataHours(
-				date.get(GregorianCalendar.DAY_OF_MONTH), date.get(GregorianCalendar.MONTH), 
-				date.get(GregorianCalendar.YEAR),date.get(GregorianCalendar.HOUR_OF_DAY), 
-				date.get(GregorianCalendar.MINUTE)));
+		HistoricData historicData = new HistoricData(object, situation,
+				new DataHours(date.get(GregorianCalendar.DAY_OF_MONTH),
+						date.get(GregorianCalendar.MONTH),
+						date.get(GregorianCalendar.YEAR),
+						date.get(GregorianCalendar.HOUR_OF_DAY),
+						date.get(GregorianCalendar.MINUTE)));
 		listHistoricData.add(historicData);
 	}
-	
+
 	/**
 	 * Exibe o historico de compras
 	 */
 	public void printHistoicSellers() {
-		try{
+		try {
 			InputStream is = new FileInputStream("fileSellerHistoric.ser");
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
-			
+
 			System.out.println("\nIMPRIMINDO HISTORICO DE VENDAS: \n");
 			String s = br.readLine();
 			while (s != null) {
@@ -144,12 +238,12 @@ public class HistoricFactory extends StartupSystem{
 	 * Exibe o historico de gerenciamento
 	 */
 	public void printHistoicModify() {
-		try{
+		try {
 			System.out.println("\nIMPRIMINDO HISTORICO DE  GERENCIAMENTO: \n");
 			InputStream is = new FileInputStream("fileModifyDataHistoric.ser");
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
-	
+
 			String s = br.readLine();
 			while (s != null) {
 				System.out.println(s);
@@ -166,8 +260,9 @@ public class HistoricFactory extends StartupSystem{
 	 * Limpa todos os historico
 	 */
 	public void clearHistoric() {
-		try{
-			FileOutputStream a = new FileOutputStream("fileSellerHistoric.ser",false);
+		try {
+			FileOutputStream a = new FileOutputStream("fileSellerHistoric.ser",
+					false);
 			OutputStreamWriter b = new OutputStreamWriter(a);
 			BufferedWriter c = new BufferedWriter(b);
 			c.write("");
@@ -184,5 +279,38 @@ public class HistoricFactory extends StartupSystem{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<String> chooseManageS() {
+		// TODO Auto-generated method stub
+		downloadData();
+		List<String> array = new LinkedList<String>();
+		for (HistoricData historicData : listHistoricData) {
+			if (historicData.getSituation().equals("SOLD")) {
+				if (historicData.getObject().getClass() == MovieData.class
+						) {
+					MovieData historic = (MovieData) historicData.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " do Filme:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				} else if (historicData.getObject().getClass() == RoomData.class
+						&& room) {
+					RoomData historic = (RoomData) historicData.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sala:\t" + historicData.getDate().toString()
+							+ "\t" + historic.toString());
+				} else if (historicData.getObject().getClass() == SessionData.class
+						&& session) {
+					SessionData historic = (SessionData) historicData
+							.getObject();
+					array.add("Data da " + historicData.getSituation()
+							+ " da Sessao:\t"
+							+ historicData.getDate().toString() + "\t"
+							+ historic.toString());
+				}
+			}
+		}
+		return null;
 	}
 }

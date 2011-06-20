@@ -2,83 +2,141 @@ package GraphicInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.AbstractButton;
+import javax.swing.BoundedRangeModel;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
+
+import MoviesData.HistoricData;
+import MoviesData.MovieData;
+import MoviesData.RoomData;
+import MoviesData.SessionData;
+import System.HistoricFactory;
+import javax.swing.JScrollBar;
+import javax.swing.JSpinner;
+import javax.swing.JList;
 
 @SuppressWarnings("serial")
 public class InterfOperacHist extends JFrame {
 
 	private JPanel contentPane;
 	private ButtonGroup group;
-
+	protected static List<HistoricData> listHistoricData;
+	HistoricFactory historic = new HistoricFactory();
+	private JTextArea txtrHistorico;
+	private JCheckBox chckbxFilme;
+	private JCheckBox chckbxSessao;
+	private JCheckBox chckbxSala;
+	private JCheckBox chckbxCriacao;
+	private JCheckBox chckbxModificacao;
+	private JCheckBox chckbxExclusao;
+	private JRadioButton b;
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public InterfOperacHist() {
+		try {
+			FileInputStream fluxoHistoricIn = new FileInputStream(
+					"fileHistoric.ser");
+			ObjectInputStream fHistoricIn = new ObjectInputStream(
+					fluxoHistoricIn);
+			listHistoricData = (LinkedList<HistoricData>) fHistoricIn
+					.readObject();
+			fHistoricIn.close();
+			fluxoHistoricIn.close();
+
+		} catch (FileNotFoundException fileNotFound) {
+		} catch (IOException io) {
+		} catch (ClassNotFoundException classNotFound) {
+		}
+		setTitle("HISTORICO - OPERACAO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 700, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
-		
+
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(317, 208, 107, 43);
+		btnVoltar.setBounds(567, 7, 107, 43);
 		contentPane.add(btnVoltar);
-		
-		JCheckBox chckbxFilme = new JCheckBox("FILME");
+
+		chckbxFilme = new JCheckBox("FILME");
 		chckbxFilme.setBounds(6, 7, 73, 23);
 		contentPane.add(chckbxFilme);
-		
-		JCheckBox chckbxSessao = new JCheckBox("SESSAO");
+
+		chckbxSessao = new JCheckBox("SESSAO");
 		chckbxSessao.setBounds(91, 7, 77, 23);
 		contentPane.add(chckbxSessao);
-		
-		JCheckBox chckbxSala = new JCheckBox("SALA");
+
+		chckbxSala = new JCheckBox("SALA");
 		chckbxSala.setBounds(188, 7, 62, 23);
 		contentPane.add(chckbxSala);
-		
-		JCheckBox chckbxCriacao = new JCheckBox("CRIACAO");
+
+		chckbxCriacao = new JCheckBox("CRIACAO");
 		chckbxCriacao.setBounds(6, 33, 83, 23);
 		contentPane.add(chckbxCriacao);
-		
-		JCheckBox chckbxExclusao = new JCheckBox("EXCLUSAO");
+
+		chckbxExclusao = new JCheckBox("EXCLUSAO");
 		chckbxExclusao.setBounds(91, 33, 91, 23);
 		contentPane.add(chckbxExclusao);
-		
-		JCheckBox chckbxModificacao = new JCheckBox("MODIFICACAO");
+
+		chckbxModificacao = new JCheckBox("MODIFICACAO");
 		chckbxModificacao.setBounds(188, 33, 99, 23);
 		contentPane.add(chckbxModificacao);
-		
+
 		JButton btnMostrar = new JButton("MOSTRAR");
-		btnMostrar.setBounds(317, 149, 107, 23);
+		btnMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textShow();
+			}
+		});
+		btnMostrar.setBounds(439, 7, 107, 23);
 		contentPane.add(btnMostrar);
-		
-		JTextArea txtrHistorico = new JTextArea();
-		txtrHistorico.setBounds(6, 63, 292, 188);
+		txtrHistorico = new JTextArea();
+		txtrHistorico.setBounds(6, 63, 668, 188);
 		contentPane.add(txtrHistorico);
 		
-		String[] lista = {"DATA", "SITIACAO", "TIPO"};
+
+		String[] lista = { "DATA", "SITUACAO"};
 		int dist = 6;
 		group = new ButtonGroup();
-		for (String radioB : lista){
-			JRadioButton b = new JRadioButton(radioB);
+		for (String radioB : lista) {
+			b = new JRadioButton(radioB);
 			b.setActionCommand(radioB); // ide salvo em string
-			b.setBounds(315, dist, 109, 23);
+			b.setBounds(300, dist, 80 , 23);
 			group.add(b);
 			contentPane.add(b);
 			dist = dist + 26;
 		}
-
+		b = new JRadioButton("TIPO");
+		b.setActionCommand("TIPO"); // ide salvo em string
+		b.setBounds(370, 6, 63 , 23);
+		group.add(b);
+		contentPane.add(b);
 		// VOLTA PARA A JANELA PRINCIPAL
 
 		btnVoltar.addActionListener(new ActionListener() {
@@ -88,5 +146,15 @@ public class InterfOperacHist extends JFrame {
 				setVisible(false);
 			}
 		});
+	}
+
+	void textShow() {
+		
+		txtrHistorico.setText("");
+		for(String hist : historic.chooseManageI(chckbxFilme.isSelected(), chckbxSessao.isSelected(), chckbxSala.isSelected(), chckbxCriacao.isSelected(), chckbxModificacao.isSelected(), chckbxExclusao.isSelected())){
+		txtrHistorico.setText(txtrHistorico.getText() +"\n"+hist);
+		
+		
+		}
 	}
 }
