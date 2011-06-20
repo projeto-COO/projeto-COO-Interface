@@ -2,16 +2,18 @@ package GraphicInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 
+import MoviesData.SessionData;
 import System.HistoricFactory;
 
 @SuppressWarnings("serial")
@@ -81,10 +83,24 @@ public class InterfSalesHist extends JFrame {
 	void textShow() {
 
 		txtrHistorico.setText("");
-		if (historic != null)
-			for (String hist : historic.chooseManageS()) {
-				txtrHistorico.setText(txtrHistorico.getText() + "\n" + hist);
-
+		if (historic != null){
+			/*if(group.getSelection().getActionCommand().equals("DATA CRESCENTE")){
+				Collections.sort(historic.chooseManageS(), new Comparator<SessionData>() {
+					public int compare(SessionData o1, SessionData o2) {
+						return(o1.getDate().toString().compareTo((o2.getDate().toString())));
+					}
+				});
+			}*/
+			
+			List<String> listSession = historic.chooseManageS();
+		
+			if(group.getSelection().getActionCommand().equals("DATA DECRESCENTE")){
+				Collections.reverse(listSession);
 			}
+			
+			for (String hist : listSession){
+				txtrHistorico.setText(txtrHistorico.getText() + "\n" + hist);
+			}
+		}
 	}
 }
