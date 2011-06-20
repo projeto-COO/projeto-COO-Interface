@@ -122,6 +122,12 @@ public class SessionData implements Serializable {
 				+ "\tSala-" + this.currentRoom.getIdRoom() + "\tQtd.Lug-"
 				+ getAvailability() + "\tHorario " + viewDate();
 	}
+	
+	public String toSell() {
+		return "Filme-" + this.currentMovie.getName()
+				+ "\tSala-" + this.currentRoom.getIdRoom()
+				+ getAvailability() + "\tHorario " + date.hh() + "h" + date.mm()+"min";
+	}
 
 	public String toSale() {
 		return "Filme:" + this.currentMovie.getName()+ "\tSala:" + this.currentRoom.getIdRoom() + "\tQtd.Lug-"

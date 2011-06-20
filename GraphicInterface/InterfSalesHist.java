@@ -22,6 +22,7 @@ public class InterfSalesHist extends JFrame {
 	private JRadioButton b;
 	private JTextArea txtrHistorico;
 	HistoricFactory historic = new HistoricFactory();
+	private JButton btnMostrar;
 
 	/**
 	 * Create the frame.
@@ -36,23 +37,36 @@ public class InterfSalesHist extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
-		
-		String[] lista = { "DATA CRESCENTE", "DATA DECRESCENTE"};
+
+		String[] lista = { "DATA CRESCENTE", "DATA DECRESCENTE" };
 		int dist = 6;
 		group = new ButtonGroup();
 		for (String radioB : lista) {
 			b = new JRadioButton(radioB);
 			b.setActionCommand(radioB); // ide salvo em string
-			b.setBounds(300, dist, 80 , 23);
+			b.setBounds(100, dist, 200, 23);
 			group.add(b);
 			contentPane.add(b);
 			dist = dist + 26;
 		}
-		
+
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(484, 11, 91, 43);
 		contentPane.add(btnVoltar);
-		
+
+		txtrHistorico = new JTextArea();
+		txtrHistorico.setBounds(10, 69, 565, 182);
+		contentPane.add(txtrHistorico);
+
+		btnMostrar = new JButton("MOSTRAR");
+		btnMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textShow();
+			}
+		});
+		btnMostrar.setBounds(362, 11, 112, 43);
+		contentPane.add(btnMostrar);
+
 		// VOLTA PARA A JANELA PRINCIPAL
 
 		btnVoltar.addActionListener(new ActionListener() {
@@ -63,13 +77,14 @@ public class InterfSalesHist extends JFrame {
 			}
 		});
 	}
-void textShow() {
-		
+
+	void textShow() {
+
 		txtrHistorico.setText("");
-		for(String hist : historic.chooseManageS(){
-		txtrHistorico.setText(txtrHistorico.getText() +"\n"+hist);
-		
-		
-		}
+		if (historic != null)
+			for (String hist : historic.chooseManageS()) {
+				txtrHistorico.setText(txtrHistorico.getText() + "\n" + hist);
+
+			}
 	}
 }
