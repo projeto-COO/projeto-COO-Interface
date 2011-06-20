@@ -13,12 +13,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import MoviesData.SessionData;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -26,14 +27,14 @@ public class ManagSessionDisplay extends JFrame {
 
 	private JPanel contentPane;
 	private ButtonGroup group;
-	protected static Map<Integer, Map<String, SessionData>> mapSessionData;
-	private JTextField txtSessao;
-	private JTextField txtFilme;
-	private JTextField txtSala;
-	private JTextField txtData;
-	private JTextField txtHora;
-	private JTextField txtVenda;
 
+	protected static Map<Integer, Map<String,SessionData>> mapSessionData; 
+	private JLabel txtSessao;
+	private JLabel txtFilme;
+	private JLabel txtSala;
+	private JLabel txtData;
+	private JLabel txtHora;
+	private JLabel txtVenda;
 	/**
 	 * Create the frame.
 	 */
@@ -104,40 +105,51 @@ public class ManagSessionDisplay extends JFrame {
 		lblVenda.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblVenda.setBounds(222, 139, 69, 14);
 		contentPane.add(lblVenda);
-
-		txtSessao = new JTextField();
+	
+		txtSessao = new JLabel();
 		txtSessao.setBounds(301, 11, 123, 20);
 		contentPane.add(txtSessao);
-		txtSessao.setColumns(10);
 
-		txtFilme = new JTextField();
+		txtFilme = new JLabel();
+
 		txtFilme.setBounds(301, 36, 123, 20);
 		contentPane.add(txtFilme);
-		txtFilme.setColumns(10);
 
-		txtSala = new JTextField();
+		txtSala = new JLabel();
+
 		txtSala.setBounds(301, 61, 86, 20);
 		contentPane.add(txtSala);
-		txtSala.setColumns(10);
+	
+		txtData = new JLabel();
 
-		txtData = new JTextField();
 		txtData.setBounds(301, 86, 86, 20);
 		contentPane.add(txtData);
-		txtData.setColumns(10);
 
-		txtHora = new JTextField();
+		
+		txtHora = new JLabel();
+
 		txtHora.setBounds(301, 111, 86, 20);
 		contentPane.add(txtHora);
-		txtHora.setColumns(10);
 
-		txtVenda = new JTextField();
+		txtVenda = new JLabel();
+
 		txtVenda.setBounds(301, 136, 86, 20);
 		contentPane.add(txtVenda);
-		txtVenda.setColumns(10);
 
 		// LISTA OS DADOS DO FILME NO PAINEL
 		int dist = 26;
 		group = new ButtonGroup();
+		if(mapSessionData==null){
+			JOptionPane.showMessageDialog(new JFrame(), "N�o existem salas cadastradas!");	
+			btnVoltar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					MainGraphUserInterf main = new MainGraphUserInterf();
+					main.setVisible(true);
+					setVisible(false);
+				}
+			});
+			return;
+			}
 		for (Integer roomNow : mapSessionData.keySet()) {
 			for (String sessionNow : mapSessionData.get(roomNow).keySet()) {
 				JRadioButton b = new JRadioButton(mapSessionData.get(roomNow)

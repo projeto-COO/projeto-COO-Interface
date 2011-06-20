@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -19,18 +20,18 @@ import javax.swing.border.EmptyBorder;
 import MoviesData.RoomData;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class ManagRoomDisplay extends JFrame {
 
 	private JPanel contentPane;
 	protected static Map<Integer,RoomData> mapRoomData;
-	private JTextField txtId;
-	private JTextField txtFileira;
-	private JTextField txtColuna;
-	private JTextField txtCapacidade;
-	private JTextField txtSevendeu;
+	private JLabel txtId;
+	private JLabel txtFileira;
+	private JLabel txtColuna;
+	private JLabel txtCapacidade;
+	private JLabel txtSevendeu;
 	/**
 	 * Create the frame.
 	 */
@@ -93,35 +94,42 @@ public class ManagRoomDisplay extends JFrame {
 		lblVendeu.setBounds(207, 136, 70, 14);
 		contentPane.add(lblVendeu);
 		
-		txtId = new JTextField();
+		txtId = new JLabel();
 		txtId.setBounds(287, 33, 86, 20);
 		contentPane.add(txtId);
-		txtId.setColumns(10);
 		
-		txtFileira = new JTextField();
+		txtFileira = new JLabel();
 		txtFileira.setBounds(287, 58, 86, 20);
 		contentPane.add(txtFileira);
-		txtFileira.setColumns(10);
 		
-		txtColuna = new JTextField();
+		txtColuna = new JLabel();
 		txtColuna.setBounds(287, 83, 86, 20);
 		contentPane.add(txtColuna);
-		txtColuna.setColumns(10);
 		
-		txtCapacidade = new JTextField();
+		txtCapacidade = new JLabel();
 		txtCapacidade.setBounds(287, 108, 86, 20);
 		contentPane.add(txtCapacidade);
-		txtCapacidade.setColumns(10);
 		
-		txtSevendeu = new JTextField();
+		txtSevendeu = new JLabel();
 		txtSevendeu.setBounds(287, 133, 86, 20);
 		contentPane.add(txtSevendeu);
-		txtSevendeu.setColumns(10);
-		
 
 		// LISTA OS DADOS DO FILME NO PAINEL ESQUERDA
 		int dist = 26;
 		final ButtonGroup group = new ButtonGroup();
+		if(mapRoomData==null){
+			JOptionPane.showMessageDialog(new JFrame(), "Não existem salas cadastradas!");	
+			btnVoltar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					MainGraphUserInterf main = new MainGraphUserInterf();
+					main.setVisible(true);
+					setVisible(false);
+				}
+			});
+			return;
+			}
+		
+		
 		for (Integer roomNow : mapRoomData.keySet()){
 			JRadioButton b = new JRadioButton(mapRoomData.get(roomNow).getIdRoom().toString());
 			b.setActionCommand(mapRoomData.get(roomNow).getIdRoom().toString()); // id salvo em string

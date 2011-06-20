@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -83,14 +84,19 @@ public class ManagMovieDelete extends JFrame {
 		//deleta o filme selecionado.
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
-				ManageMovie manage = new ManageMovie();
+				if(group.getSelection()==null){
+					JOptionPane.showMessageDialog(new JFrame(), "Nao existem filmes cadastrados!");
+				}else{
+		int recebido = Integer.parseInt(group.getSelection().getActionCommand());
+				
+				
+		ManageMovie manage = new ManageMovie();
 				manage.deleteMovie(recebido);
 				MainGraphUserInterf main = new MainGraphUserInterf();
 				main.setVisible(true);
 				setVisible(false);
 			}
-		});
+			}});
 		
 		//VOLTA PARA A JANELA PRINCIPAL
 		btnVoltar.addActionListener(new ActionListener() {

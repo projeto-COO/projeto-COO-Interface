@@ -114,7 +114,7 @@ public class InterfOperacHist extends JFrame {
 				textShow();
 			}
 		});
-		btnMostrar.setBounds(439, 7, 107, 23);
+		btnMostrar.setBounds(448, 7, 107, 23);
 		contentPane.add(btnMostrar);
 		txtrHistorico = new JTextArea();
 		txtrHistorico.setBounds(6, 63, 668, 188);
@@ -134,7 +134,7 @@ public class InterfOperacHist extends JFrame {
 		}
 		b = new JRadioButton("TIPO");
 		b.setActionCommand("TIPO"); // ide salvo em string
-		b.setBounds(370, 6, 63 , 23);
+		b.setBounds(377, 7, 63 , 23);
 		group.add(b);
 		contentPane.add(b);
 		// VOLTA PARA A JANELA PRINCIPAL
