@@ -18,6 +18,7 @@ public class StartupGraphicInterface extends StartupSystem {
 		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				downloadData();
 				try {
 					MainGraphUserInterf main = new MainGraphUserInterf();
 					main.setVisible(true);
