@@ -124,18 +124,29 @@ public class ManagMovieAdd extends JFrame {
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				ManageMovie newMovie = new ManageMovie();
-				
+				StringBuffer message = new StringBuffer();
 				try{
-					DataHours duracao = new DataHours(Integer.parseInt(txtHoras
-							.getText()), Integer.parseInt(txtMinutos.getText()));
+					if(Integer.parseInt(txtClassificacao.getText())< 0)
+						message.append("Insira valor valido para classificaçao\n");
+					if(Integer.parseInt(txtHoras.getText())<=0 || Integer.parseInt(txtMinutos.getText())<= 0)
+					throw new NumberFormatException();
+					
+					if(message.toString().isEmpty()){
+					DataHours duracao = new DataHours(Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtMinutos.getText()));
 					if(newMovie.createMovie(txtNome.getText(), txtGenero.getText(),
 							txtClassificacao.getText(), txtDimensao.getText(),
-							txtLinguagem.getText(), duracao))
+							txtLinguagem.getText(), duracao)){
 						JOptionPane.showMessageDialog(new JFrame(), "Filme salvado com sucesso!");
 						cleanMenu();
+					}}
+					else{
+						JOptionPane.showMessageDialog(new JFrame(), message);
+					}
 				}catch(NumberFormatException e){
-					JOptionPane.showMessageDialog(new JFrame(), "Data e Hora Inadequada!");
-				}
+					message.append("Data e Hora Inadequada!");
+					JOptionPane.showMessageDialog(new JFrame(), message);
+				}	
+				
 			}
 		});
 		btnCriar.setBounds(10, 208, 91, 43);

@@ -3,6 +3,7 @@ package GraphicInterface;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -117,21 +118,36 @@ public class InterfaceSales extends JFrame {
 		txtQuant.setColumns(10);
 
 		JButton btnConfirmar = new JButton("CONFIRMAR");
+
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String recebido = group.getSelection().getActionCommand();
+				
 				if(Integer.parseInt(txtQuant.getText())<= mapSessionData.get(Integer.parseInt(recebido.substring(0, 2))).get(recebido).getAvailability()){
 					TicketSale sales = new TicketSale();
 					sales.mainSales(mapSessionData.get(Integer.parseInt(recebido.substring(0, 2))).get(recebido).getIdSession(), Integer.parseInt(txtQuant.getText()));
+					JOptionPane.showMessageDialog(new JFrame(), "Venda realizada com sucesso!");
+					cleanMenu();
+				}
+				else{
+					JOptionPane.showMessageDialog(new JFrame(), "Nao foi possivel realizar compra!");
+					cleanMenu();
 				}
 			}
 		});
 		btnConfirmar.setBounds(224, 228, 101, 23);
+
+
 		contentPane.add(btnConfirmar);
+
 
 		JLabel lblQuantidade = new JLabel("QUANTIDADE");
 		lblQuantidade.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblQuantidade.setBounds(10, 232, 79, 14);
 		contentPane.add(lblQuantidade);
 	}
-}
+	void cleanMenu(){
+		txtQuant.setText("");
+	}
+
+	}

@@ -59,11 +59,6 @@ public class ManagRoomDisplay extends JFrame {
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
-/*		
-		JButton btnMostrar = new JButton("MOSTRAR");
-		btnMostrar.setBounds(207, 208, 91, 43);
-		contentPane.add(btnMostrar);
-*/		
 
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
 		final JPanel DisplayRoom = new JPanel();

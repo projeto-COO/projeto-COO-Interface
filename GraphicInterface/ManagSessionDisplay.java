@@ -61,11 +61,8 @@ public class ManagSessionDisplay extends JFrame {
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
-		/*
-		JButton btnMostrar = new JButton("MOSTRAR");
-		btnMostrar.setBounds(223, 164, 103, 43);
-		contentPane.add(btnMostrar);
-		*/
+
+		
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
 		final JPanel DisplayMovie = new JPanel();
 		DisplayMovie.setBounds(0, 0, 213, 229);

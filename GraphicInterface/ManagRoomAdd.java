@@ -68,10 +68,19 @@ public class ManagRoomAdd extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ManageRoom manage = new ManageRoom();
 				try{
-					manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
-					cleanMenu();
-					JOptionPane.showMessageDialog(new JFrame(), "Sala criada com sucesso.");
+					if(Integer.parseInt(txtFileiras.getText())<=0 || Integer.parseInt(txtColunas.getText())<= 0){
+						JOptionPane.showMessageDialog(new JFrame(), "Valores inadequados para fileira e/ou colunas.");
+					}
+					else{
+						
+						manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
+						cleanMenu();
+						JOptionPane.showMessageDialog(new JFrame(), "Sala criada com sucesso.");
+					}	
 				}
+						
+					
+					
 				catch(NumberFormatException he){
 					JOptionPane.showMessageDialog(new JFrame(), "Valores inadequados para fileira e/ou colunas!");
 					

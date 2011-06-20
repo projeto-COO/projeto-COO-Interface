@@ -86,7 +86,7 @@ public class ManagRoomDelete extends JFrame {
 				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
 				ManageRoom manage = new ManageRoom();
 				manage.deleteRoom(recebido);
-				JOptionPane.showMessageDialog(new JFrame(), "Filme deletado com sucesso!");
+				JOptionPane.showMessageDialog(new JFrame(), "Sala excluida com sucesso!");
 			}
 		});
 		

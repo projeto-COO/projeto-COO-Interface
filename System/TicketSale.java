@@ -39,8 +39,8 @@ public class TicketSale extends StartupSystem {
 	public void mainSales(String idSession, Integer qnt) {
 		downloadData();
 		currentSession = mapSessionData.get(
-				new Integer(idSession.substring(0, 2))).get(idSession);
-		currentSession.updateAvailability(qnt);
+				Integer.parseInt((idSession.substring(0, 2)))).get(idSession);
+		mapSessionData.get(Integer.parseInt(idSession.substring(0, 2))).get(idSession).updateAvailability(qnt);
 		historic.AddHistoric(currentSession, "SOLD");
 		tagsale(currentSession);
 		uploadData();
@@ -118,7 +118,11 @@ public class TicketSale extends StartupSystem {
 	 * @param currentSession
 	 */
 	private void tagsale(SessionData currentSession) {
-				mapSessionData.get(currentSession.getCurrentRoom().getIdRoom())
+		mapSessionData.get(currentSession.getCurrentRoom().getIdRoom())
 				.get(currentSession.getIdSession()).setSold(true);
+		mapMovieData.get(currentSession.getCurrentMovie().getIdMovie())
+				.setSold(true);
+		mapRoomData.get(currentSession.getCurrentRoom().getIdRoom()).setSold(
+				true);
 	}
 }

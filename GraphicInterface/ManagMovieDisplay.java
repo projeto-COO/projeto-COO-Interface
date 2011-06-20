@@ -71,6 +71,7 @@ public class ManagMovieDisplay extends JFrame {
 		btnVoltar.setBounds(10, 0, 100, 23);
 		ButtonPanel.add(btnVoltar);
 		getContentPane().add(ButtonPanel);
+
 		/*
 		JButton btnMostrar = new JButton("MOSTRAR");
 		btnMostrar.setBounds(300, 0, 120, 23);
@@ -199,22 +200,5 @@ public class ManagMovieDisplay extends JFrame {
 				setVisible(false);
 			}
 		});
-		//MOSTRA A SELE��O DO TEXTO.
-		/*
-		btnMostrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
-				textFCodigo.setText(mapMovieData.get(recebido).getIdMovie().toString());
-				txtNome.setText(mapMovieData.get(recebido).getName().toUpperCase());
-				txtGenero.setText(mapMovieData.get(recebido).getGender().toUpperCase());
-				txtLinguagem.setText(mapMovieData.get(recebido).getLanguage().toUpperCase());
-				txtRateage.setText(mapMovieData.get(recebido).getAgeRate().toString());
-				txtDuracao.setText(mapMovieData.get(recebido).getDuration().toDuration());
-				if(mapMovieData.get(recebido).isSold())
-					txtSevendeu.setText("VENDIDO");
-				else
-					txtSevendeu.setText("NAO VENDIDO");
-			}
-		});*/
 	}
 }
