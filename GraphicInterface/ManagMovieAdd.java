@@ -1,18 +1,16 @@
 package GraphicInterface;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import Startup.DataHours;
 import System.ManageMovie;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class ManagMovieAdd extends JFrame {
@@ -26,6 +24,7 @@ public class ManagMovieAdd extends JFrame {
 	private JTextField txtLinguagem;
 	private JTextField txtHoras;
 	private JTextField txtMinutos;
+	JOptionPane alerta = new JOptionPane();
 
 	/**
 	 * Create the frame.
@@ -38,8 +37,7 @@ public class ManagMovieAdd extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setLocationRelativeTo(null);
-		
+
 		JButton btnVoltar = new JButton("VOLTAR");
 		btnVoltar.setBounds(333, 208, 91, 43);
 		contentPane.add(btnVoltar);
@@ -122,14 +120,32 @@ public class ManagMovieAdd extends JFrame {
 		JButton btnCriar = new JButton("CRIAR");
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				if (txtNome.getSelectedText() == null || txtGenero.getSelectedText() == null || txtClassificacao.getSelectedText() == null || txtDimensao.getSelectedText() == null || txtLinguagem.getSelectedText() == null || txtHoras.getSelectedText() == null || txtMinutos.getSelectedText() == null) {
+					alerta.showMessageDialog(contentPane, "Preencha todos os campos");	
+				} else	if (Integer.parseInt(txtClassificacao.getText()) < 0 || Integer.parseInt(txtClassificacao.getText()) > 18) {
+					alerta.showMessageDialog(contentPane, "Coloque um número inteiro entre 0 e 18.");
+				} else if (Integer.parseInt(txtHoras.getText()) < 0) {
+					alerta.showMessageDialog(contentPane, "Coloque um número inteiro maior que zero.");
+				} else if (Integer.parseInt(txtMinutos.getText()) < 0 || Integer.parseInt(txtMinutos.getText()) > 59) {
+					alerta.showMessageDialog(contentPane, "Coloque um número entre 0 e 59.");	
+				} else {
 				ManageMovie newMovie = new ManageMovie();
-
 				DataHours duracao = new DataHours(Integer.parseInt(txtHoras
 						.getText()), Integer.parseInt(txtMinutos.getText()));
 				newMovie.createMovie(txtNome.getText(), txtGenero.getText(),
 						txtClassificacao.getText(), txtDimensao.getText(),
 						txtLinguagem.getText(), duracao);
+				txtNome.setText("");
+				txtGenero.setText("");
+				txtClassificacao.setText("");
+				txtDimensao.setText("");
+				txtLinguagem.setText("");
+				txtHoras.setText("");
+				txtMinutos.setText("");
+				alerta.showMessageDialog(contentPane, "Criado com Sucesso!");
+				}
 			}
+			
 		});
 		btnCriar.setBounds(10, 208, 91, 43);
 		contentPane.add(btnCriar);
@@ -144,4 +160,5 @@ public class ManagMovieAdd extends JFrame {
 			}
 		});
 	}
+	
 }
