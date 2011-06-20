@@ -21,7 +21,7 @@ import java.util.TreeMap;
 import javax.swing.JRadioButton;
 import MoviesData.*;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 
@@ -31,13 +31,13 @@ public class ManagMovieDisplay extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup group;
 	protected static Map<Integer,MovieData> mapMovieData;
-	private JTextField textFCodigo;
-	private JTextField txtNome;
-	private JTextField txtGenero;
-	private JTextField txtRateage;
-	private JTextField txtLinguagem;
-	private JTextField txtDuracao;
-	private JTextField txtSevendeu;
+	private JLabel textFCodigo;
+	private JLabel txtNome;
+	private JLabel txtGenero;
+	private JLabel txtRateage;
+	private JLabel txtLinguagem;
+	private JLabel txtDuracao;
+	private JLabel txtSevendeu;
 
 	/**
 	 * Create the frame.
@@ -93,8 +93,16 @@ public class ManagMovieDisplay extends JFrame {
 	
 		if(mapMovieData==null){
 			JOptionPane.showMessageDialog(new JFrame(), "Não existem filmes cadastrados!");	
+			btnVoltar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					MainGraphUserInterf main = new MainGraphUserInterf();
+					main.setVisible(true);
+					setVisible(false);
+				}
+			});
 			return;
-		}
+			}
+		
 		for (Integer movieNow : mapMovieData.keySet()){
 			JRadioButton b = new JRadioButton(mapMovieData.get(movieNow).getName().toUpperCase());
 			b.setActionCommand(mapMovieData.get(movieNow).getIdMovie().toString()); // ide salvo em string
@@ -163,40 +171,35 @@ public class ManagMovieDisplay extends JFrame {
 		lblVendeu.setBounds(10, 183, 77, 14);
 		DisplayMovieData.add(lblVendeu);
 		
-		textFCodigo = new JTextField();
+		textFCodigo = new JLabel();
 		textFCodigo.setBounds(94, 30, 86, 20);
 		DisplayMovieData.add(textFCodigo);
-		textFCodigo.setColumns(10);
 		
-		txtNome = new JTextField();
+		txtNome = new JLabel();
 		txtNome.setBounds(94, 55, 86, 20);
 		DisplayMovieData.add(txtNome);
-		txtNome.setColumns(10);
 		
-		txtGenero = new JTextField();
+		txtGenero = new JLabel();
 		txtGenero.setBounds(94, 80, 86, 20);
 		DisplayMovieData.add(txtGenero);
-		txtGenero.setColumns(10);
 		
-		txtRateage = new JTextField();
+		txtRateage = new JLabel();
 		txtRateage.setBounds(94, 105, 86, 20);
 		DisplayMovieData.add(txtRateage);
-		txtRateage.setColumns(10);
 		
-		txtLinguagem = new JTextField();
+		txtLinguagem = new JLabel();
 		txtLinguagem.setBounds(94, 130, 86, 20);
 		DisplayMovieData.add(txtLinguagem);
-		txtLinguagem.setColumns(10);
 		
-		txtDuracao = new JTextField();
+		txtDuracao = new JLabel();
 		txtDuracao.setBounds(94, 155, 86, 20);
 		DisplayMovieData.add(txtDuracao);
-		txtDuracao.setColumns(10);
 		
-		txtSevendeu = new JTextField();
+		
+		txtSevendeu = new JLabel();
 		txtSevendeu.setBounds(94, 180, 86, 20);
 		DisplayMovieData.add(txtSevendeu);
-		txtSevendeu.setColumns(10);
+		
 
 		// VOLTA PARA A JANELA PRINCIPAL
 		btnVoltar.addActionListener(new ActionListener() {

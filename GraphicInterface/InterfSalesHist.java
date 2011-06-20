@@ -66,7 +66,7 @@ public class InterfSalesHist extends JFrame {
 void textShow() {
 		
 		txtrHistorico.setText("");
-		for(String hist : historic.chooseManageS(){
+		for(String hist : historic.chooseManageS()){
 		txtrHistorico.setText(txtrHistorico.getText() +"\n"+hist);
 		
 		
