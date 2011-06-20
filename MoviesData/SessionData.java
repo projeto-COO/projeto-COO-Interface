@@ -123,6 +123,11 @@ public class SessionData implements Serializable {
 				+ getAvailability() + "\tHorario " + viewDate();
 	}
 
+	public String toSale() {
+		return "Filme:" + this.currentMovie.getName()+ "\tSala:" + this.currentRoom.getIdRoom() + "\tQtd.Lug-"
+				+ getAvailability() + "\tHorario " + viewDate();
+	}
+	
 	public String viewDate() {
 		return date.dd() + "/" + date.MM() + "/" + date.yyyy() + " "
 				+ date.hh() + "h" + date.mm()+"min";

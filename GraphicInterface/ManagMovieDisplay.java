@@ -95,6 +95,22 @@ public class ManagMovieDisplay extends JFrame {
 			group.add(b);
 			DisplayMovie.add(b);
 			dist = dist + 26;
+			
+			b.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int recebido = Integer.parseInt(group.getSelection().getActionCommand());
+					textFCodigo.setText(mapMovieData.get(recebido).getIdMovie().toString());
+					txtNome.setText(mapMovieData.get(recebido).getName().toUpperCase());
+					txtGenero.setText(mapMovieData.get(recebido).getGender().toUpperCase());
+					txtLinguagem.setText(mapMovieData.get(recebido).getLanguage().toUpperCase());
+					txtRateage.setText(mapMovieData.get(recebido).getAgeRate().toString());
+					txtDuracao.setText(mapMovieData.get(recebido).getDuration().toDuration());
+					if(mapMovieData.get(recebido).isSold())
+						txtSevendeu.setText("VENDIDO");
+					else
+						txtSevendeu.setText("NAO VENDIDO");
+				}
+			});
 		}
 		//
 
