@@ -92,7 +92,7 @@ public class ManagMovieDisplay extends JFrame {
 		group = new ButtonGroup();
 	
 		if(mapMovieData==null){
-			JOptionPane.showMessageDialog(new JFrame(), "Não existem filmes cadastrados!");	
+			JOptionPane.showMessageDialog(new JFrame(), "NÃ£o existem filmes cadastrados!");	
 			return;
 		}
 		for (Integer movieNow : mapMovieData.keySet()){

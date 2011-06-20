@@ -135,6 +135,11 @@ public class ManagSessionDisplay extends JFrame {
 		// LISTA OS DADOS DO FILME NO PAINEL 
 		int dist = 26;
 		group = new ButtonGroup();
+		if(mapSessionData==null){
+			MainGraphUserInterf main = new MainGraphUserInterf();
+			main.setVisible(true);
+			setVisible(false);
+		}
 		for (Integer roomNow : mapSessionData.keySet()) {
 			for (String sessionNow : mapSessionData.get(roomNow).keySet()){
 				JRadioButton b = new JRadioButton(mapSessionData.get(roomNow).get(sessionNow).getIdSession()+ " - " + mapSessionData.get(roomNow).get(sessionNow).getCurrentMovie().getName());
