@@ -77,6 +77,7 @@ public class ManagRoomDelete extends JFrame {
 				DisplayRoom.add(b);
 				dist = dist + 26;
 			}
+
 		}
 		//
 		

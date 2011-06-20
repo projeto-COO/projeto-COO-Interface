@@ -51,6 +51,7 @@ public class InterfaceSales extends JFrame {
 		} catch (ClassNotFoundException classNotFound) {
 		}
 		//
+
 		setTitle("VENDAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -136,6 +137,7 @@ public class InterfaceSales extends JFrame {
 			}
 		});
 		btnConfirmar.setBounds(197, 229, 126, 23);
+
 
 
 		contentPane.add(btnConfirmar);

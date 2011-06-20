@@ -204,5 +204,6 @@ public class ManagSessionAdd extends JFrame {
 				setVisible(false);
 			}
 		});
+
 	}
 }

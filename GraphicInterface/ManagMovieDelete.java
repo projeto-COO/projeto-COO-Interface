@@ -77,6 +77,7 @@ public class ManagMovieDelete extends JFrame {
 				DisplayMovie.add(b);
 				dist = dist + 26;
 			}
+
 		}
 		
 		//deleta o filme selecionado.

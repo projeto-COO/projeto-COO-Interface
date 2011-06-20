@@ -220,6 +220,7 @@ public class ManagMovieEdit extends JFrame {
 				
 				});
 			}
+
 		}
 
 		// VOLTA PARA A JANELA PRINCIPAL
