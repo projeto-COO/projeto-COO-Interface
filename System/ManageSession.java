@@ -4,27 +4,30 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import javax.print.DocFlavor.STRING;
+
 import MoviesData.MovieData;
 import MoviesData.RoomData;
 import MoviesData.SessionData;
 import Startup.DataHours;
 
-
 /**
  * Padrão Singleton
  */
 
- /**
- *Classe responsavel por gerenciar todas as tarefas da sessao
+/**
+ * Classe responsavel por gerenciar todas as tarefas da sessao
  */
 public class ManageSession extends ManageMovies {
 	private static ManageSession instance;
 	SessionData chooseSession;
-	
-	public ManageSession() {}
-	
+
+	public ManageSession() {
+	}
+
 	public static ManageSession getInstance() {
-		if (instance==null)	instance = new ManageSession();
+		if (instance == null)
+			instance = new ManageSession();
 		return instance;
 	}
 
@@ -83,27 +86,48 @@ public class ManageSession extends ManageMovies {
 	/**
 	 * Cria um sessao
 	 */
+	// METODO DA INTERFACE GRAFICA
+	public void createSession(SessionData newSession) {
+		downloadData();
+		historic = HistoricFactory.getInstance();
+		
+		System.out.print("\nCriando sessao...");
+		if (mapSessionData.get(newSession.getCurrentRoom().getIdRoom()) == null) {
+			mapSessionData.put(newSession.getCurrentRoom().getIdRoom(),
+					new TreeMap<String, SessionData>());
+		}
+
+		mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(
+				newSession.getIdSession(), newSession);
+
+		historic.AddHistoric(newSession, "CREATED");
+		System.out.println("Sessao criada");
+		uploadData();
+		return;
+	}
+
+	// PROGRAMA BASE.
 	private void createSession() {
 		SessionData newSession = null;
 		Integer chooseMovie;
 		Integer chooseRoom;
 		boolean newData = false;
-		
-		if(mapMovieData.isEmpty()){
+
+		if (mapMovieData.isEmpty()) {
 			System.out.print("\nE necessario criar Filmes.");
 			return;
 		}
-		if(mapRoomData.isEmpty()){
+		if (mapRoomData.isEmpty()) {
 			System.out.print("\nE necessario criar Salas.");
 			return;
 		}
-		
-		
+
 		System.out.print("\nCriando sessao...");
 		MovieData currentMovieData = chooseMovie("create");
 
 		if (currentMovieData == null) {
-			System.out.println("E necessario cadastrar filmes ou codigo invalido");
+			System.out
+					.println("E necessario cadastrar filmes ou codigo invalido");
 			return;
 		} else
 			chooseMovie = currentMovieData.getIdMovie();
@@ -125,7 +149,8 @@ public class ManageSession extends ManageMovies {
 				newData = true;
 			} else {
 				if (!checkSession(newSession)) {
-					System.out.println("\nJa existe sessao alocada nesta sala neste horario");
+					System.out
+							.println("\nJa existe sessao alocada nesta sala neste horario");
 					newData = true;
 				} else {
 					newData = false;
@@ -134,12 +159,14 @@ public class ManageSession extends ManageMovies {
 		} while (newData);
 
 		if (mapSessionData.get(newSession.getCurrentRoom().getIdRoom()) == null) {
-			mapSessionData.put(newSession.getCurrentRoom().getIdRoom(),new TreeMap<String, SessionData>());
+			mapSessionData.put(newSession.getCurrentRoom().getIdRoom(),
+					new TreeMap<String, SessionData>());
 		}
-		
-		mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(newSession.getIdSession(), newSession);		
-		
-		historic.AddHistoric(newSession,"CREATED");
+
+		mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(
+				newSession.getIdSession(), newSession);
+
+		historic.AddHistoric(newSession, "CREATED");
 		System.out.println("Sessao criada");
 		uploadData();
 		return;
@@ -154,7 +181,7 @@ public class ManageSession extends ManageMovies {
 			System.out.println("\nNao existem sessoes cadastradas");
 		} else {
 			this.chooseSession = chooseSession("modify");
-			
+
 			Integer option = 0;
 			boolean error = true;
 			boolean repeate = true;
@@ -162,10 +189,10 @@ public class ManageSession extends ManageMovies {
 				System.out.println("Valor Invalido");
 				return;
 			}
-			
-			mapSessionData.get(chooseSession.getCurrentRoom().getIdRoom()).
-			remove(chooseSession.getIdSession());
-								
+
+			mapSessionData.get(chooseSession.getCurrentRoom().getIdRoom())
+					.remove(chooseSession.getIdSession());
+
 			do {
 				do {
 					System.out.print("\nModificando sessao... Id:"
@@ -204,14 +231,16 @@ public class ManageSession extends ManageMovies {
 					break;
 				}
 			} while (repeate);
-			
-			if(mapSessionData.get(this.chooseSession.getCurrentRoom().getIdRoom()) == null){
-				mapSessionData.put(this.chooseSession.getCurrentRoom().getIdRoom(),	new TreeMap<String,SessionData>());
+
+			if (mapSessionData.get(this.chooseSession.getCurrentRoom()
+					.getIdRoom()) == null) {
+				mapSessionData.put(this.chooseSession.getCurrentRoom()
+						.getIdRoom(), new TreeMap<String, SessionData>());
 			}
-			
+
 			mapSessionData.get(this.chooseSession.getCurrentRoom().getIdRoom())
-			.put(this.chooseSession.getIdSession(), this.chooseSession);	
-			historic.AddHistoric(this.chooseSession,"MODIFIED");
+					.put(this.chooseSession.getIdSession(), this.chooseSession);
+			historic.AddHistoric(this.chooseSession, "MODIFIED");
 			System.out.println("Sessao modificada");
 			uploadData();
 		}
@@ -230,8 +259,10 @@ public class ManageSession extends ManageMovies {
 				return;
 			} else {
 				System.out.println("\nExcluida a sessao");
-				mapSessionData.get(this.chooseSession.getCurrentRoom().getIdRoom()).remove(this.chooseSession.getIdSession());
-				historic.AddHistoric(this.chooseSession,"DELETED");
+				mapSessionData.get(
+						this.chooseSession.getCurrentRoom().getIdRoom())
+						.remove(this.chooseSession.getIdSession());
+				historic.AddHistoric(this.chooseSession, "DELETED");
 				uploadData();
 			}
 		}
@@ -246,6 +277,7 @@ public class ManageSession extends ManageMovies {
 	 */
 	public boolean checkSession(SessionData current) {
 		SessionData example;
+		downloadData();
 		if (mapSessionData.get(current.getCurrentRoom().getIdRoom()) != null) {
 			for (String currentSession : mapSessionData.get(
 					current.getCurrentRoom().getIdRoom()).keySet()) {
@@ -253,8 +285,8 @@ public class ManageSession extends ManageMovies {
 						current.getCurrentRoom().getIdRoom()).get(
 						currentSession);
 
-				if (current.getDate().toString().equals(
-						example.getDate().toString())) {
+				if (current.getDate().toString()
+						.equals(example.getDate().toString())) {
 					return false;
 				}
 				if (current.getDate().yyyy().equals(example.getDate().yyyy())
@@ -262,18 +294,18 @@ public class ManageSession extends ManageMovies {
 								.equals(example.getDate().MM())
 						&& current.getDate().dd()
 								.equals(example.getDate().dd())) {
-					if (current.getDate().toString().equals(
-							example.getDate().toString()))
+					if (current.getDate().toString()
+							.equals(example.getDate().toString()))
 						return false;
-					if (current.getDate().toString().compareTo(
-							example.getDate().toString()) < 0
-							&& current.getEnd().toString().compareTo(
-									example.getDate().toString()) > 0)
+					if (current.getDate().toString()
+							.compareTo(example.getDate().toString()) < 0
+							&& current.getEnd().toString()
+									.compareTo(example.getDate().toString()) > 0)
 						return false;
-					if (current.getDate().toString().compareTo(
-							example.getDate().toString()) > 0
-							&& current.getDate().toString().compareTo(
-									example.getEnd().toString()) < 0)
+					if (current.getDate().toString()
+							.compareTo(example.getDate().toString()) > 0
+							&& current.getDate().toString()
+									.compareTo(example.getEnd().toString()) < 0)
 						return false;
 				}
 			}
@@ -309,8 +341,8 @@ public class ManageSession extends ManageMovies {
 
 	/**
 	 * Ira aparecer as sessoes e será pedido para escolher uma delas A escolha
-	 * será feita 1º pela sala e depois pelo codigo da sessao, para que a busca
-	 * seja mais rápida
+	 * será feita 1º pela sala e depois pelo codigo da sessao, para que a
+	 * busca seja mais rápida
 	 * 
 	 * @param restriction
 	 * @return
@@ -322,34 +354,47 @@ public class ManageSession extends ManageMovies {
 
 		System.out.println("\nEscolha a sessao: ");
 		do {
-			
+
 			viewSession(restriction);
 			System.out.print("Digite o codigo da Sessao: ");
 			idSession = scanner.next();
-			try{
-				if (mapSessionData.get((idSession.substring(0, 2).charAt(0) == '0') ? 
-						new Integer(idSession.substring(1, 2)) : new Integer(idSession.substring(0, 2))) == null ||
-						mapSessionData.get(new Integer(idSession.substring(0, 2))).get(idSession) == null)
+			try {
+				if (mapSessionData
+						.get((idSession.substring(0, 2).charAt(0) == '0') ? new Integer(
+								idSession.substring(1, 2)) : new Integer(
+								idSession.substring(0, 2))) == null
+						|| mapSessionData.get(
+								new Integer(idSession.substring(0, 2))).get(
+								idSession) == null)
 					return null;
-				if(restriction.equals("buy")){
-					if(mapSessionData.get(new Integer(idSession.substring(0, 2))).get(idSession).getAvailability() <= 0){
-						System.out.println("\n**ESGOTADA** Escolha outra sessao!\n");
+				if (restriction.equals("buy")) {
+					if (mapSessionData
+							.get(new Integer(idSession.substring(0, 2)))
+							.get(idSession).getAvailability() <= 0) {
+						System.out
+								.println("\n**ESGOTADA** Escolha outra sessao!\n");
 						repeate = true;
-					}else repeate = false;
-				}else{
-					if (mapSessionData.get(new Integer(idSession.substring(0, 2))).get(idSession).isSold()) {
-						System.out.println("\nDigite apenas valores validos!\n");
+					} else
+						repeate = false;
+				} else {
+					if (mapSessionData
+							.get(new Integer(idSession.substring(0, 2)))
+							.get(idSession).isSold()) {
+						System.out
+								.println("\nDigite apenas valores validos!\n");
 						repeate = true;
-					} else	repeate = false;
+					} else
+						repeate = false;
 				}
-			
-			}catch(StringIndexOutOfBoundsException e){
+
+			} catch (StringIndexOutOfBoundsException e) {
 				System.out.println("\nDigite apenas valores validos\n");
 				scanner = new Scanner(System.in);
 				repeate = true;
 			}
 		} while (repeate);
 
-		return mapSessionData.get(new Integer(idSession.substring(0, 2))).get(idSession);
+		return mapSessionData.get(new Integer(idSession.substring(0, 2))).get(
+				idSession);
 	}
 }

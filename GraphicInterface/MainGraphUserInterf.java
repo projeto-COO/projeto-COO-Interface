@@ -201,7 +201,9 @@ public class MainGraphUserInterf extends JFrame {
 		JMenuItem mntmVender = new JMenuItem("VENDER");
 		mntmVender.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				InterfaceSales sales = new InterfaceSales();
+				sales.setVisible(true);
+				setVisible(false);
 			}
 		});
 		menuBar.add(mntmVender);

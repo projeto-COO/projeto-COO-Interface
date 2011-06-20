@@ -157,7 +157,8 @@ public class ManagSessionDisplay extends JFrame {
 				txtSessao.setText(recebido);
 				txtFilme.setText(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido).getCurrentMovie().getName());
 				txtSala.setText(recebido.substring(0, 2));
-				//txtData.setText(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido));
+				txtData.setText(recebido.substring(4,6)+ " / "+ recebido.substring(6,8));
+				txtHora.setText(recebido.substring(8,10)+ ":"+ recebido.substring(10,12));
 				if(mapSessionData.get(Integer.parseInt(recebido.substring(0,2))).get(recebido).isSold()){
 					txtVenda.setText("VENDIDO");
 				}
