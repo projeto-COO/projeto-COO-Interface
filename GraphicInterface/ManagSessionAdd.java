@@ -13,7 +13,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -63,7 +62,7 @@ public class ManagSessionAdd extends JFrame {
 			fluxoMovieIn.close();
 		} catch (IOException io) {	} catch (ClassNotFoundException classNotFound) { 	}
 		
-		
+		setTitle("GERENCIAMENTO - SESSAO - ADICIONAR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -118,7 +117,7 @@ public class ManagSessionAdd extends JFrame {
 		
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(345, 219, 79, 32);
+		btnVoltar.setBounds(326, 220, 98, 32);
 		contentPane.add(btnVoltar);
 		
 		JLabel lblData = new JLabel("DATA");
@@ -184,18 +183,13 @@ public class ManagSessionAdd extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				MovieData currentMovieData = mapMovieData.get(Integer.parseInt(groupF.getSelection().getActionCommand()));
 				RoomData currentRoomData = mapRoomData.get(Integer.parseInt(groupS.getSelection().getActionCommand()));
-				
 				DataHours data = new DataHours(Integer.parseInt(textDia.getText()), Integer.parseInt(textMes.getText()), Integer.parseInt(textAno.getText()), Integer.parseInt(textHora.getText()), Integer.parseInt(textMinut.getText()));
-				
 				ManageMovies manag = new ManageMovies();
 				ManageSession sess = new ManageSession();
-				JOptionPane.showMessageDialog(new JFrame(), "Sessao criada com sucesso!");
-				cleanMenu();
 				if(manag.checkData(data)){
 					SessionData newSession = new SessionData(currentMovieData, data, currentRoomData);
 					if(sess.checkSession(newSession)){
 						sess.createSession(newSession);
-						
 					}
 				}
 			}
@@ -210,12 +204,6 @@ public class ManagSessionAdd extends JFrame {
 				setVisible(false);
 			}
 		});
-	}
-	void cleanMenu(){
-		textDia.setText("");
-		textMes.setText("");
-		textHora.setText("");
-		textAno.setText("");
-		textMinut.setText("");
+
 	}
 }

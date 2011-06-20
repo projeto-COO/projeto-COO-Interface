@@ -29,7 +29,7 @@ public class ManagRoomAdd extends JFrame {
 	public ManagRoomAdd() {
 		//createMovie(String nome,String genero,String classif,String dimens,String linguagem, DataHours duracao)
 		
-		setTitle("GERENCIAMENTO - FILMES - CRIAR");
+		setTitle("GERENCIAMENTO - SALAS - ADICIONAR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -52,6 +52,7 @@ public class InterfaceSales extends JFrame {
 		}
 		//
 
+		setTitle("VENDAS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -135,7 +136,8 @@ public class InterfaceSales extends JFrame {
 				}
 			}
 		});
-		btnConfirmar.setBounds(224, 228, 101, 23);
+		btnConfirmar.setBounds(197, 229, 126, 23);
+
 
 
 		contentPane.add(btnConfirmar);
