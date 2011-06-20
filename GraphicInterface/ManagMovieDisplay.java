@@ -73,7 +73,7 @@ public class ManagMovieDisplay extends JFrame {
 		getContentPane().add(ButtonPanel);
 		
 		JButton btnMostrar = new JButton("MOSTRAR");
-		btnMostrar.setBounds(322, 0, 100, 23);
+		btnMostrar.setBounds(300, 0, 120, 23);
 		ButtonPanel.add(btnMostrar);
 
 		// CRIA O PAYNEL COM A LISTA DE FILMES NA ESQUERDA.
