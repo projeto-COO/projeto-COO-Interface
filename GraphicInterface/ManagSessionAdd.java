@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -181,9 +182,13 @@ public class ManagSessionAdd extends JFrame {
 		
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if (groupF.getSelection() == null || groupS.getSelection() == null || textDia.getText() == null || textMes.getText() == null || textAno.getText() == null || textHora.getText() == null || textMinut.getText() == null) {
+					JOptionPane.showMessageDialog(new JFrame(), "Selecione o filme e a sala e preencha todos os campos!");
+				} else {
 				MovieData currentMovieData = mapMovieData.get(Integer.parseInt(groupF.getSelection().getActionCommand()));
 				RoomData currentRoomData = mapRoomData.get(Integer.parseInt(groupS.getSelection().getActionCommand()));
 				DataHours data = new DataHours(Integer.parseInt(textDia.getText()), Integer.parseInt(textMes.getText()), Integer.parseInt(textAno.getText()), Integer.parseInt(textHora.getText()), Integer.parseInt(textMinut.getText()));
+				
 				ManageMovies manag = new ManageMovies();
 				ManageSession sess = new ManageSession();
 				if(manag.checkData(data)){
@@ -192,6 +197,8 @@ public class ManagSessionAdd extends JFrame {
 						sess.createSession(newSession);
 					}
 				}
+				JOptionPane.showMessageDialog(new JFrame(), "Sessao criada com sucesso.");
+			}
 			}
 		});
 		

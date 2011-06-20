@@ -81,26 +81,14 @@ public class InterfSalesHist extends JFrame {
 	}
 
 	void textShow() {
-
 		txtrHistorico.setText("");
-		if (historic != null){
-			/*if(group.getSelection().getActionCommand().equals("DATA CRESCENTE")){
-				Collections.sort(historic.chooseManageS(), new Comparator<SessionData>() {
-					public int compare(SessionData o1, SessionData o2) {
-						return(o1.getDate().toString().compareTo((o2.getDate().toString())));
-					}
-				});
-			}*/
-			
-			List<String> listSession = historic.chooseManageS();
+		List<String> listSession = historic.chooseManageS();
+		if(group.getSelection().getActionCommand().equals("DATA DECRESCENTE")){
+			Collections.reverse(listSession);
+		}
 		
-			if(group.getSelection().getActionCommand().equals("DATA DECRESCENTE")){
-				Collections.reverse(listSession);
-			}
-			
-			for (String hist : listSession){
-				txtrHistorico.setText(txtrHistorico.getText() + "\n" + hist);
-			}
+		for (String hist : listSession){
+			txtrHistorico.setText(txtrHistorico.getText() + "\n" + hist);
 		}
 	}
 }

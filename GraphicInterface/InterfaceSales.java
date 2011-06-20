@@ -68,7 +68,13 @@ public class InterfaceSales extends JFrame {
 				BorderFactory.createEtchedBorder(), "SESSOES"));
 		contentPane.add(DisplayMovie);
 		DisplayMovie.setLayout(null);
-
+		if (mapSessionData == null) {
+			JOptionPane.showMessageDialog(new JFrame(), "Não existem sessões cadastradas. Não é possível realizar a venda.");
+			group = new ButtonGroup();
+			JLabel naoExiste = new JLabel ("Nenhuma sessão cadastrada.");
+			naoExiste.setBounds(10,50,200,20);
+			DisplayMovie.add(naoExiste);
+		} else {
 		// LISTA OS DADOS DO FILME NO PAINEL
 		int dist = 26;
 		group = new ButtonGroup();
@@ -100,6 +106,7 @@ public class InterfaceSales extends JFrame {
 				dist = dist + 26;
 			}
 		}
+	}
 		//
 
 		JButton btnVoltar = new JButton("VOLTAR");
@@ -122,6 +129,9 @@ public class InterfaceSales extends JFrame {
 
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (group.getSelection() == null || txtQuant.getText() == null || group == null || mapSessionData == null || Integer.parseInt(txtQuant.getText()) <= 0) {
+					JOptionPane.showMessageDialog(new JFrame(), "Para vender ingressos é necessário selecionar uma sessão e indicar a quantidade de ingressos!");
+				} else {
 				String recebido = group.getSelection().getActionCommand();
 				
 				if(Integer.parseInt(txtQuant.getText())<= mapSessionData.get(Integer.parseInt(recebido.substring(0, 2))).get(recebido).getAvailability()){
@@ -134,7 +144,7 @@ public class InterfaceSales extends JFrame {
 					JOptionPane.showMessageDialog(new JFrame(), "Nao foi possivel realizar compra!");
 					cleanMenu();
 				}
-			}
+			}}
 		});
 		btnConfirmar.setBounds(197, 229, 126, 23);
 

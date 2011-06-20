@@ -83,11 +83,14 @@ public class ManagRoomDelete extends JFrame {
 		
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(group.getSelection()==null){
+					JOptionPane.showMessageDialog(new JFrame(), "Nao existem salas!");
+				}else{
 				int recebido = Integer.parseInt(group.getSelection().getActionCommand());
 				ManageRoom manage = new ManageRoom();
 				manage.deleteRoom(recebido);
 				JOptionPane.showMessageDialog(new JFrame(), "Sala excluida com sucesso!");
-			}
+			}}
 		});
 		
 		//VOLTA PARA A JANELA PRINCIPAL
