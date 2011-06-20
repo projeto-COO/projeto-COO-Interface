@@ -128,6 +128,8 @@ public class ManagMovieAdd extends JFrame {
 				newMovie.createMovie(txtNome.getText(), txtGenero.getText(),
 						txtClassificacao.getText(), txtDimensao.getText(),
 						txtLinguagem.getText(), duracao);
+                                JOptionPane alerta = new JOptionPane();
+				alerta.showMessageDialog(contentPane, "Criado com Sucesso!");
 			}
 		});
 		btnCriar.setBounds(10, 208, 91, 43);
