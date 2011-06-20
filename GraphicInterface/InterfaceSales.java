@@ -135,7 +135,7 @@ public class InterfaceSales extends JFrame {
 				}
 			}
 		});
-		btnConfirmar.setBounds(224, 228, 101, 23);
+		btnConfirmar.setBounds(197, 229, 126, 23);
 
 
 		contentPane.add(btnConfirmar);

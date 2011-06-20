@@ -93,7 +93,7 @@ public class ManagMovieEdit extends JFrame {
 
 		JLabel lblClassificacao = new JLabel("CLASSIFICACAO");
 		lblClassificacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblClassificacao.setBounds(176, 61, 89, 14);
+		lblClassificacao.setBounds(176, 62, 89, 14);
 		contentPane.add(lblClassificacao);
 
 		JLabel lblDimensao = new JLabel("DIMENSAO");
@@ -180,44 +180,46 @@ public class ManagMovieEdit extends JFrame {
 		int dist = 26;
 		group = new ButtonGroup();
 		for (Integer movieNow : mapMovieData.keySet()) {
-			JRadioButton b = new JRadioButton(mapMovieData.get(movieNow)
-					.getName().toUpperCase());
-			b.setActionCommand(mapMovieData.get(movieNow).getIdMovie()
-					.toString()); // ide salvo em string
-			b.setBounds(6, dist, 109, 23);
-			group.add(b);
-			DisplayMovie.add(b);
-			dist = dist + 26;
-			b.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					btnModificar.setEnabled(true);
-					int recebido = Integer.parseInt(group.getSelection()
-							.getActionCommand());
-					txtNome.setText(mapMovieData.get(recebido).getName()
-							.toUpperCase());
-					txtGenero.setText(mapMovieData.get(recebido).getGender()
-							.toUpperCase());
-					txtLinguagem.setText(mapMovieData.get(recebido).getLanguage()
-							.toUpperCase());
-					txtClassif.setText(mapMovieData.get(recebido).getAgeRate()
-							.toString());
-					txtDimensao.setText(mapMovieData.get(recebido).getDimension());
-					
-					if(mapMovieData.get(recebido).getDuration().hh().toString().length()==1)
-						txtHoras.setText("0"+mapMovieData.get(recebido).getDuration().hh().toString());
-					else txtHoras.setText(mapMovieData.get(recebido).getDuration().hh().toString());
-					
-					if(mapMovieData.get(recebido).getDuration().mm().toString().length()==1)
-						txtMinuto.setText("0"+mapMovieData.get(recebido).getDuration().mm().toString());
-					else if(mapMovieData.get(recebido).getDuration().mm().toString().length()==0){
-						txtMinuto.setText("00");
-						System.out.println("akii");
+			if(!mapMovieData.get(movieNow).isSold()){
+				JRadioButton b = new JRadioButton(mapMovieData.get(movieNow)
+						.getName().toUpperCase());
+				b.setActionCommand(mapMovieData.get(movieNow).getIdMovie()
+						.toString()); // ide salvo em string
+				b.setBounds(6, dist, 109, 23);
+				group.add(b);
+				DisplayMovie.add(b);
+				dist = dist + 26;
+				b.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btnModificar.setEnabled(true);
+						int recebido = Integer.parseInt(group.getSelection()
+								.getActionCommand());
+						txtNome.setText(mapMovieData.get(recebido).getName()
+								.toUpperCase());
+						txtGenero.setText(mapMovieData.get(recebido).getGender()
+								.toUpperCase());
+						txtLinguagem.setText(mapMovieData.get(recebido).getLanguage()
+								.toUpperCase());
+						txtClassif.setText(mapMovieData.get(recebido).getAgeRate()
+								.toString());
+						txtDimensao.setText(mapMovieData.get(recebido).getDimension());
+						
+						if(mapMovieData.get(recebido).getDuration().hh().toString().length()==1)
+							txtHoras.setText("0"+mapMovieData.get(recebido).getDuration().hh().toString());
+						else txtHoras.setText(mapMovieData.get(recebido).getDuration().hh().toString());
+						
+						if(mapMovieData.get(recebido).getDuration().mm().toString().length()==1)
+							txtMinuto.setText("0"+mapMovieData.get(recebido).getDuration().mm().toString());
+						else if(mapMovieData.get(recebido).getDuration().mm().toString().length()==0){
+							txtMinuto.setText("00");
+							System.out.println("akii");
+						}
+												
+						else txtHoras.setText(mapMovieData.get(recebido).getDuration().mm().toString());
 					}
-											
-					else txtHoras.setText(mapMovieData.get(recebido).getDuration().mm().toString());
-				}
-			});
-
+				
+				});
+			}
 		}
 
 		// VOLTA PARA A JANELA PRINCIPAL

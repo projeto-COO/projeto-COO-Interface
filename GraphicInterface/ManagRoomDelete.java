@@ -65,19 +65,21 @@ public class ManagRoomDelete extends JFrame {
 		DisplayRoom.setLayout(null);
 		
 		JButton btnExcluir = new JButton("EXCLUIR");
-		btnExcluir.setBounds(205, 101, 91, 43);
+		btnExcluir.setBounds(333, 94, 91, 43);
 		contentPane.add(btnExcluir);
 		
 		// LISTA OS DADOS DO FILME NO PAINEL ESQUERDA
 		int dist = 26;
 		final ButtonGroup group = new ButtonGroup();
 		for (Integer roomNow : mapRoomData.keySet()){
-			JRadioButton b = new JRadioButton(mapRoomData.get(roomNow).getIdRoom().toString());
-			b.setActionCommand(mapRoomData.get(roomNow).getIdRoom().toString()); // id salvo em string
-			b.setBounds(6, dist, 109, 23);
-			group.add(b);
-			DisplayRoom.add(b);
-			dist = dist + 26;
+			if(!mapRoomData.get(roomNow).isSold()){
+				JRadioButton b = new JRadioButton(mapRoomData.get(roomNow).getIdRoom().toString());
+				b.setActionCommand(mapRoomData.get(roomNow).getIdRoom().toString()); // id salvo em string
+				b.setBounds(6, dist, 109, 23);
+				group.add(b);
+				DisplayRoom.add(b);
+				dist = dist + 26;
+			}
 		}
 		//
 		
