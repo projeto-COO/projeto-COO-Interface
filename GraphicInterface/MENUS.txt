@@ -5,3 +5,12 @@ Gerenciar Filmes...
 	Excluir os Filmes(4)
 	Voltar ao menu anterior(5)
 	
+
+	Exibindo Sessoes..
+Codigo:010110121845	Filme-batman	Sala-1	Qtd.Lug-95	Horario 10/12/2010 18h45min	Venda: True
+Codigo:020223091730	Filme-aranha	Sala-2	Qtd.Lug-70	Horario 23/9/2011 17h30min	Venda: True
+	
+	
+	0 a 2 - sala
+	2 a 4 - filme
+	
