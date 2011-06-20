@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Startup.DataHours;
+import System.ManageRoom;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -60,7 +62,13 @@ public class ManagRoomAdd extends JFrame {
 		txtFileiras.setColumns(10);
 		
 		JButton btnCriar = new JButton("CRIAR");
-		btnCriar.setBounds(137, 160, 89, 23);
+		btnCriar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageRoom manage = new ManageRoom();
+				manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
+			}
+		});
+		btnCriar.setBounds(135, 116, 91, 43);
 		contentPane.add(btnCriar);
 		
 		//VOLTA PARA A JANELA PRINCIPAL

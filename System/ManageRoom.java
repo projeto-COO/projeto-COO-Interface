@@ -82,9 +82,8 @@ public class ManageRoom extends ManageMovies {
 
 	/**
 	 * Cria uma sala
-	 */	
-	//METOD PARA INTERFACE GRAFICA
-	private void createRoom( Integer fileiras, Integer colunas) {
+	 */
+	public void createRoom( Integer fileiras, Integer colunas) {
 		downloadData();
 		historic = HistoricFactory.getInstance();
 		
@@ -160,6 +159,20 @@ public class ManageRoom extends ManageMovies {
 	/**
 	 * Deleta uma sala
 	 */
+	//PROGRAMA INTERFACE GRAFICA
+	public void deleteRoom(int chosseRoom) {
+		downloadData();
+		historic = HistoricFactory.getInstance();
+		RoomData currentRoom = mapRoomData.get(chosseRoom);
+			System.out.println("\nExcluida a sala e todas as suas sessoes");
+			mapRoomData.remove(currentRoom.getIdRoom());
+			mapSessionData.remove(currentRoom.getIdRoom());
+			historic.AddHistoric(currentRoom,"DELETED");
+			uploadData();
+	}
+	
+	
+	//PROGRAMA BASE
 	private void deleteRoom() {
 		RoomData currentRoom = chooseRoom("delete");
 		if (currentRoom == null) {
