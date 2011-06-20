@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -62,11 +63,19 @@ public class ManagRoomAdd extends JFrame {
 		txtFileiras.setColumns(10);
 		
 		JButton btnCriar = new JButton("CRIAR");
+		
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManageRoom manage = new ManageRoom();
-				manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
-			}
+				try{
+					manage.createRoom(Integer.parseInt(txtFileiras.getText()), Integer.parseInt(txtColunas.getText()));
+					cleanMenu();
+					JOptionPane.showMessageDialog(new JFrame(), "Sala criada com sucesso.");
+				}
+				catch(NumberFormatException he){
+					JOptionPane.showMessageDialog(new JFrame(), "Valores inadequados para fileira e/ou colunas!");
+					
+				}}
 		});
 		btnCriar.setBounds(135, 116, 91, 43);
 		contentPane.add(btnCriar);
@@ -80,6 +89,10 @@ public class ManagRoomAdd extends JFrame {
 				setVisible(false);
 			}
 		});
+	}
+	void cleanMenu(){
+		txtFileiras.setText("");
+		txtColunas.setText("");
 	}
 
 }
