@@ -93,13 +93,13 @@ public class ManageSession extends ManageMovies {
 		downloadData();
 		historic = HistoricFactory.getInstance();
 		boolean newData = true;
-		
+
 		System.out.print("\nCriando sessao...");
 		if (mapSessionData.get(newSession.getCurrentRoom().getIdRoom()) == null) {
 			mapSessionData.put(newSession.getCurrentRoom().getIdRoom(),
 					new TreeMap<String, SessionData>());
 		}
-		
+
 		if (!checkData(newSession.getDate())) {
 			newData = false;
 		} else {
@@ -107,9 +107,10 @@ public class ManageSession extends ManageMovies {
 				newData = false;
 			}
 		}
-		
-		if(newData){
-			mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(newSession.getIdSession(), newSession);	
+
+		if (newData) {
+			mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(
+					newSession.getIdSession(), newSession);
 			historic.AddHistoric(newSession, "CREATED");
 			System.out.println("Sessao criada");
 			uploadData();
@@ -260,6 +261,19 @@ public class ManageSession extends ManageMovies {
 	/**
 	 * Deleta um sessao
 	 */
+	// interface
+	public void deleteSessionI(String idSession) {
+		downloadData();
+		historic = HistoricFactory.getInstance();
+		this.chooseSession = mapSessionData.get(new Integer(idSession.substring(0, 2))).get(
+				idSession);
+		mapSessionData.get(this.chooseSession.getCurrentRoom().getIdRoom())
+				.remove(this.chooseSession.getIdSession());
+		historic.AddHistoric(this.chooseSession, "DELETED");
+		uploadData();
+	}
+
+	// basico
 	private void deleteSession() {
 		if (mapSessionData.isEmpty()) {
 			System.out.println("\nNao existem sessoes cadastradas");

@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import MoviesData.SessionData;
+import System.ManageSession;
 
 public class ManagSessionDelete extends JFrame {
 
@@ -88,6 +89,13 @@ public class ManagSessionDelete extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JButton btnDeletar = new JButton("DELETAR");
+		btnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String idSession = group.getSelection().getActionCommand();
+				ManageSession manage = new ManageSession();
+					manage.deleteSessionI(idSession);
+			}
+		});
 		btnDeletar.setBounds(259, 77, 89, 23);
 		contentPane.add(btnDeletar);
 
