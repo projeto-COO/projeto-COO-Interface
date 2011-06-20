@@ -199,7 +199,7 @@ public class ManagMovieDisplay extends JFrame {
 				setVisible(false);
 			}
 		});
-		//MOSTRA A SELE��O DO TEXTO.
+		//MOSTRA A SELECAO DO TEXTO.
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int recebido = Integer.parseInt(group.getSelection().getActionCommand());

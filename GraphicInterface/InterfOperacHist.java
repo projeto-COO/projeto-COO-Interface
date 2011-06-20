@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class InterfOperacHist extends JFrame {
@@ -32,7 +32,7 @@ public class InterfOperacHist extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JButton btnVoltar = new JButton("VOLTAR");
-		btnVoltar.setBounds(333, 208, 91, 43);
+		btnVoltar.setBounds(317, 208, 107, 43);
 		contentPane.add(btnVoltar);
 		
 		JCheckBox chckbxFilme = new JCheckBox("FILME");
@@ -59,12 +59,21 @@ public class InterfOperacHist extends JFrame {
 		chckbxModificacao.setBounds(188, 33, 99, 23);
 		contentPane.add(chckbxModificacao);
 		
+		JButton btnMostrar = new JButton("MOSTRAR");
+		btnMostrar.setBounds(317, 149, 107, 23);
+		contentPane.add(btnMostrar);
+		
+		JTextArea txtrHistorico = new JTextArea();
+		txtrHistorico.setBounds(6, 63, 292, 188);
+		contentPane.add(txtrHistorico);
+		
 		String[] lista = {"DATA", "SITIACAO", "TIPO"};
-		int dist = 26;
+		int dist = 6;
+		group = new ButtonGroup();
 		for (String radioB : lista){
 			JRadioButton b = new JRadioButton(radioB);
 			b.setActionCommand(radioB); // ide salvo em string
-			b.setBounds(315, 6, 109, 23);
+			b.setBounds(315, dist, 109, 23);
 			group.add(b);
 			contentPane.add(b);
 			dist = dist + 26;
