@@ -22,6 +22,8 @@ import javax.swing.border.EmptyBorder;
 import MoviesData.MovieData;
 import MoviesData.RoomData;
 import MoviesData.SessionData;
+import Startup.DataHours;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -242,8 +244,13 @@ public class ManagSessionEdit extends JFrame {
 
 	protected void modificarSessao(String actionCommand) {
 		// TODO Auto-generated method stub
-		idSessionSala = actionCommand.substring(0, 2); // substring da sessão
+		idSessionSala = actionCommand.substring(0, 2); // substring da sessï¿½o
 		idModifFilme = groupS.getSelection().getActionCommand(); // string que modificara
+		DataHours data = new DataHours(Integer.parseInt((txtDia.getText().length()<1) ? "0"+txtDia.getText() : txtDia.getText()),
+				Integer.parseInt((txtMes.getText().length()<1) ? "0"+txtMes.getText() : txtMes.getText()),
+				Integer.parseInt(txtAno.getText()),
+				Integer.parseInt((txtHora.getText().length()<1) ? "0"+txtHora.getText() : txtHora.getText()),
+				Integer.parseInt((txtMinuto.getText().length()<1) ? "0"+txtMinuto.getText() : txtMinuto.getText()));
 		currentSession = mapSessionData.get(Integer.parseInt(idSessionSala)).get(actionCommand); // a ser modificada.
 		
 	}

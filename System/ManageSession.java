@@ -108,7 +108,7 @@ public class ManageSession extends ManageMovies {
 			}
 		}
 		
-		if(newData){
+		if(newData){			
 			mapSessionData.get(newSession.getCurrentRoom().getIdRoom()).put(newSession.getIdSession(), newSession);	
 			historic.AddHistoric(newSession, "CREATED");
 			System.out.println("Sessao criada");
