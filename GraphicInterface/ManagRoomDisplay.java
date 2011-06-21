@@ -118,7 +118,7 @@ public class ManagRoomDisplay extends JFrame {
 		int dist = 26;
 		final ButtonGroup group = new ButtonGroup();
 		if(mapRoomData==null){
-			JOptionPane.showMessageDialog(new JFrame(), "Não existem salas cadastradas!");	
+			JOptionPane.showMessageDialog(new JFrame(), "NÃ£o existem salas cadastradas!");	
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					MainGraphUserInterf main = new MainGraphUserInterf();
@@ -127,7 +127,7 @@ public class ManagRoomDisplay extends JFrame {
 				}
 			});
 			return;
-			}
+		}
 		
 		
 		for (Integer roomNow : mapRoomData.keySet()){

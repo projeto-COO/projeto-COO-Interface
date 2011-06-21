@@ -80,8 +80,13 @@ public class ManagSessionAdd extends JFrame {
 				BorderFactory.createEtchedBorder(), "SALA"));
 		contentPane.add(DisplayRoom);
 		DisplayRoom.setLayout(null);
-		
-		// LISTA OS DADOS DO SALAS NO PAINEL ESQUERDA
+		if(mapRoomData==null){
+			JLabel naoroom = new JLabel("Nao existem salas.");
+			naoroom.setBounds(0, 50, 145, 20);
+			DisplayRoom.add(naoroom);
+			groupS = new ButtonGroup();
+		}
+		else{// LISTA OS DADOS DO SALAS NO PAINEL ESQUERDA
 		int distS = 26;
 		groupS = new ButtonGroup();
 		for (Integer roomNow : mapRoomData.keySet()){
@@ -91,7 +96,7 @@ public class ManagSessionAdd extends JFrame {
 			groupS.add(s);
 			DisplayRoom.add(s);
 			distS = distS + 26;
-		}
+		}}
 		//
 		
 		// CRIA O PAYNEL COM A LISTA DE FILMES NO CENTRO.
@@ -102,7 +107,14 @@ public class ManagSessionAdd extends JFrame {
 		contentPane.add(DisplayMovie);
 		DisplayMovie.setLayout(null);
 		
-		// LISTA OS DADOS DO FILME NO PAINEL 
+		if(mapMovieData==null){
+			JLabel naomovie = new JLabel("Nao existem filmes.");
+			naomovie.setBounds(147, 50, 140, 20);
+			DisplayMovie.add(naomovie);
+			groupF = new ButtonGroup();
+		}
+		else{
+			// LISTA OS DADOS DO FILME NO PAINEL 
 		int distF = 26;
 		groupF = new ButtonGroup();
 		for (Integer movieNow : mapMovieData.keySet()){
@@ -112,7 +124,7 @@ public class ManagSessionAdd extends JFrame {
 			groupF.add(f);
 			DisplayMovie.add(f);
 			distF = distF + 26;
-		}
+		}}
 		//
 		
 		
@@ -182,7 +194,7 @@ public class ManagSessionAdd extends JFrame {
 		
 		btnCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (groupF.getSelection() == null || groupS.getSelection() == null || textDia.getText() == null || textMes.getText() == null || textAno.getText() == null || textHora.getText() == null || textMinut.getText() == null) {
+				if (groupF.getSelection() == null || groupS.getSelection() == null || textDia.getText() == null || textMes.getText() == null || textAno.getText() == null || textHora.getText() == null || textMinut.getText() == null || textAno.getText().length()<4) {
 					JOptionPane.showMessageDialog(new JFrame(), "Selecione o filme e a sala e preencha todos os campos!");
 				} else {
 				MovieData currentMovieData = mapMovieData.get(Integer.parseInt(groupF.getSelection().getActionCommand()));

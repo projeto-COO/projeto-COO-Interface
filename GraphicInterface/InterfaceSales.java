@@ -69,9 +69,9 @@ public class InterfaceSales extends JFrame {
 		contentPane.add(DisplayMovie);
 		DisplayMovie.setLayout(null);
 		if (mapSessionData == null) {
-			JOptionPane.showMessageDialog(new JFrame(), "N„o existem sessıes cadastradas. N„o È possÌvel realizar a venda.");
+			JOptionPane.showMessageDialog(new JFrame(), "N√£o existem sess√µes cadastradas. N√£o √© poss√≠vel realizar a venda.");
 			group = new ButtonGroup();
-			JLabel naoExiste = new JLabel ("Nenhuma sess„o cadastrada.");
+			JLabel naoExiste = new JLabel ("Nenhuma sess√£o cadastrada.");
 			naoExiste.setBounds(10,50,200,20);
 			DisplayMovie.add(naoExiste);
 		} else {
@@ -130,7 +130,7 @@ public class InterfaceSales extends JFrame {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (group.getSelection() == null || txtQuant.getText() == null || group == null || mapSessionData == null || Integer.parseInt(txtQuant.getText()) <= 0) {
-					JOptionPane.showMessageDialog(new JFrame(), "Para vender ingressos È necess·rio selecionar uma sess„o e indicar a quantidade de ingressos!");
+					JOptionPane.showMessageDialog(new JFrame(), "Para vender ingressos √© necess√°rio selecionar uma sess√£o e indicar a quantidade de ingressos!");
 				} else {
 				String recebido = group.getSelection().getActionCommand();
 				
@@ -158,8 +158,8 @@ public class InterfaceSales extends JFrame {
 		lblQuantidade.setBounds(10, 232, 79, 14);
 		contentPane.add(lblQuantidade);
 	}
+
 	void cleanMenu(){
 		txtQuant.setText("");
 	}
-
-	}
+}

@@ -41,7 +41,6 @@ import javax.swing.JList;
 public class InterfOperacHist extends JFrame {
 
 	private JPanel contentPane;
-	private ButtonGroup group;
 	protected static List<HistoricData> listHistoricData;
 	HistoricFactory historic = new HistoricFactory();
 	private JTextArea txtrHistorico;
@@ -51,7 +50,6 @@ public class InterfOperacHist extends JFrame {
 	private JCheckBox chckbxCriacao;
 	private JCheckBox chckbxModificacao;
 	private JCheckBox chckbxExclusao;
-	private JRadioButton b;
 	/**
 	 * Create the frame.
 	 */
@@ -89,23 +87,23 @@ public class InterfOperacHist extends JFrame {
 		contentPane.add(chckbxFilme);
 
 		chckbxSessao = new JCheckBox("SESSAO");
-		chckbxSessao.setBounds(91, 7, 77, 23);
+		chckbxSessao.setBounds(105, 7, 91, 23);
 		contentPane.add(chckbxSessao);
 
 		chckbxSala = new JCheckBox("SALA");
-		chckbxSala.setBounds(188, 7, 62, 23);
+		chckbxSala.setBounds(211, 7, 62, 23);
 		contentPane.add(chckbxSala);
 
 		chckbxCriacao = new JCheckBox("CRIACAO");
-		chckbxCriacao.setBounds(6, 33, 83, 23);
+		chckbxCriacao.setBounds(6, 33, 91, 23);
 		contentPane.add(chckbxCriacao);
 
 		chckbxExclusao = new JCheckBox("EXCLUSAO");
-		chckbxExclusao.setBounds(91, 33, 91, 23);
+		chckbxExclusao.setBounds(105, 33, 107, 23);
 		contentPane.add(chckbxExclusao);
 
 		chckbxModificacao = new JCheckBox("MODIFICACAO");
-		chckbxModificacao.setBounds(188, 33, 99, 23);
+		chckbxModificacao.setBounds(211, 33, 121, 23);
 		contentPane.add(chckbxModificacao);
 
 		JButton btnMostrar = new JButton("MOSTRAR");
@@ -120,25 +118,7 @@ public class InterfOperacHist extends JFrame {
 		txtrHistorico.setBounds(6, 63, 668, 188);
 		contentPane.add(txtrHistorico);
 		
-
-		String[] lista = { "DATA", "SITUACAO"};
-		int dist = 6;
-		group = new ButtonGroup();
-		for (String radioB : lista) {
-			b = new JRadioButton(radioB);
-			b.setActionCommand(radioB); // ide salvo em string
-			b.setBounds(300, dist, 80 , 23);
-			group.add(b);
-			contentPane.add(b);
-			dist = dist + 26;
-		}
-		b = new JRadioButton("TIPO");
-		b.setActionCommand("TIPO"); // ide salvo em string
-		b.setBounds(377, 7, 63 , 23);
-		group.add(b);
-		contentPane.add(b);
 		// VOLTA PARA A JANELA PRINCIPAL
-
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MainGraphUserInterf main = new MainGraphUserInterf();

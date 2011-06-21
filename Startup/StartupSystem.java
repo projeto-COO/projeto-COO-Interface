@@ -22,7 +22,7 @@ import System.TicketSale;
  * Classe StartupSystem: Ela gerencia todo o sistema
  */
 @SuppressWarnings("unused")
-public abstract class StartupSystem {
+public abstract class StartupSystem{
 
 	protected static Map<Integer,MovieData> mapMovieData;
 	protected static Map<Integer,RoomData> mapRoomData;

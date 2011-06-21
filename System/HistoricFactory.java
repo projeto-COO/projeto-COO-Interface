@@ -291,7 +291,7 @@ public class HistoricFactory extends StartupSystem {
 					SessionData historic = (SessionData) historicData
 							.getObject();
 					array.add("Data da " + historicData.getSituation()
-							+ " da Sessao:\t"
+							+ " da Sessao:  "
 							+ historicData.getDate().toString() + "  "
 							+ historic.toSell());
 				}
